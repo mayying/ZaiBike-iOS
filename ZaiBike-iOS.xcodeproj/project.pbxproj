@@ -1,0 +1,755 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7B062D971C00A16700B6F9D2 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B062D961C00A16700B6F9D2 /* libzbar.a */; };
+		7B062DAF1C00B44800B6F9D2 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 7B062DAE1C00B44800B6F9D2 /* zbar-help.html */; };
+		7B062DB41C00B47A00B6F9D2 /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B062DB01C00B47A00B6F9D2 /* zbar-back.png */; };
+		7B062DB51C00B47A00B6F9D2 /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B062DB21C00B47A00B6F9D2 /* zbar-helpicons.png */; };
+		7B062DB61C00B47A00B6F9D2 /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B062DB31C00B47A00B6F9D2 /* zbar-samples.png */; };
+		7B2FE15C1BE5ABAC0092F113 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2FE15B1BE5ABAC0092F113 /* MainViewController.m */; };
+		7B2FE1601BE5C8080092F113 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE15F1BE5C8080092F113 /* CoreMedia.framework */; };
+		7B2FE1621BE5C8170092F113 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE1611BE5C8170092F113 /* CoreVideo.framework */; };
+		7B2FE1641BE5C82A0092F113 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE1631BE5C82A0092F113 /* libiconv.tbd */; };
+		7B2FE1801BE5F2D50092F113 /* URLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2FE17F1BE5F2D50092F113 /* URLHandler.m */; };
+		7B808ABB1BE53CA60041F188 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B808ABA1BE53CA60041F188 /* main.m */; };
+		7B808ABE1BE53CA60041F188 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B808ABD1BE53CA60041F188 /* AppDelegate.m */; };
+		7B808AC11BE53CA60041F188 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B808AC01BE53CA60041F188 /* ViewController.m */; };
+		7B808AC41BE53CA60041F188 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B808AC21BE53CA60041F188 /* Main.storyboard */; };
+		7B808AC61BE53CA60041F188 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B808AC51BE53CA60041F188 /* Assets.xcassets */; };
+		7B808AC91BE53CA60041F188 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B808AC71BE53CA60041F188 /* LaunchScreen.storyboard */; };
+		7B808AD41BE53CA60041F188 /* ZaiBike_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B808AD31BE53CA60041F188 /* ZaiBike_iOSTests.m */; };
+		7B808ADF1BE53CA60041F188 /* ZaiBike_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B808ADE1BE53CA60041F188 /* ZaiBike_iOSUITests.m */; };
+		7B808AED1BE53D8C0041F188 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AEC1BE53D8C0041F188 /* AVFoundation.framework */; };
+		7B808AEF1BE53D920041F188 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AEE1BE53D920041F188 /* CoreData.framework */; };
+		7B808AF11BE53D970041F188 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AF01BE53D970041F188 /* CoreLocation.framework */; };
+		7B808AF31BE53D9D0041F188 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AF21BE53D9D0041F188 /* CoreText.framework */; };
+		7B808AF51BE53DA20041F188 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AF41BE53DA20041F188 /* GLKit.framework */; };
+		7B808AF71BE53DA60041F188 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AF61BE53DA60041F188 /* ImageIO.framework */; };
+		7B808AF91BE53DAF0041F188 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AF81BE53DAF0041F188 /* libc++.tbd */; };
+		7B808AFB1BE53DB50041F188 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AFA1BE53DB50041F188 /* libicucore.tbd */; };
+		7B808AFD1BE53DBB0041F188 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AFC1BE53DBB0041F188 /* libz.tbd */; };
+		7B808AFF1BE53DC00041F188 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AFE1BE53DC00041F188 /* OpenGLES.framework */; };
+		7B808B011BE53DC60041F188 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808B001BE53DC60041F188 /* QuartzCore.framework */; };
+		7B808B031BE53DCB0041F188 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808B021BE53DCB0041F188 /* SystemConfiguration.framework */; };
+		7BBBB4C41BE6CADD003A5E94 /* ZBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBB4C31BE6CADD003A5E94 /* ZBarViewController.m */; };
+		F2DB4E9A8D420B0C246BB6AB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C81B1902E22C5240360D3BB0 /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7B808AD01BE53CA60041F188 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B808AAE1BE53CA60041F188 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B808AB51BE53CA60041F188;
+			remoteInfo = "ZaiBike-iOS";
+		};
+		7B808ADB1BE53CA60041F188 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B808AAE1BE53CA60041F188 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B808AB51BE53CA60041F188;
+			remoteInfo = "ZaiBike-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		33E514839FF606CE9DC19803 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7719C1F258B2BC41822EAD75 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7B062D921C00A14A00B6F9D2 /* ZBarSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ZBarSDK; sourceTree = "<group>"; };
+		7B062D961C00A16700B6F9D2 /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzbar.a; path = ZBarSDK/libzbar.a; sourceTree = "<group>"; };
+		7B062D991C00A18400B6F9D2 /* ZBarSymbol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBarSymbol.h; sourceTree = "<group>"; };
+		7B062DA71C00B27500B6F9D2 /* ZBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBarViewController.h; sourceTree = "<group>"; };
+		7B062DAE1C00B44800B6F9D2 /* zbar-help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zbar-help.html"; path = "Resources/zbar-help.html"; sourceTree = "<group>"; };
+		7B062DB01C00B47A00B6F9D2 /* zbar-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zbar-back.png"; path = "Resources/zbar-back.png"; sourceTree = "<group>"; };
+		7B062DB11C00B47A00B6F9D2 /* zbar-help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zbar-help.html"; path = "Resources/zbar-help.html"; sourceTree = "<group>"; };
+		7B062DB21C00B47A00B6F9D2 /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zbar-helpicons.png"; path = "Resources/zbar-helpicons.png"; sourceTree = "<group>"; };
+		7B062DB31C00B47A00B6F9D2 /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zbar-samples.png"; path = "Resources/zbar-samples.png"; sourceTree = "<group>"; };
+		7B2FE15A1BE5ABAC0092F113 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		7B2FE15B1BE5ABAC0092F113 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		7B2FE15F1BE5C8080092F113 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		7B2FE1611BE5C8170092F113 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		7B2FE1631BE5C82A0092F113 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		7B2FE17E1BE5F2D50092F113 /* URLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLHandler.h; sourceTree = "<group>"; };
+		7B2FE17F1BE5F2D50092F113 /* URLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLHandler.m; sourceTree = "<group>"; };
+		7B808AB61BE53CA60041F188 /* ZaiBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaiBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B808ABA1BE53CA60041F188 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7B808ABC1BE53CA60041F188 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7B808ABD1BE53CA60041F188 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7B808ABF1BE53CA60041F188 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7B808AC01BE53CA60041F188 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7B808AC31BE53CA60041F188 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7B808AC51BE53CA60041F188 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7B808AC81BE53CA60041F188 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7B808ACA1BE53CA60041F188 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B808ACF1BE53CA60041F188 /* ZaiBike-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ZaiBike-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B808AD31BE53CA60041F188 /* ZaiBike_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZaiBike_iOSTests.m; sourceTree = "<group>"; };
+		7B808AD51BE53CA60041F188 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B808ADA1BE53CA60041F188 /* ZaiBike-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ZaiBike-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B808ADE1BE53CA60041F188 /* ZaiBike_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZaiBike_iOSUITests.m; sourceTree = "<group>"; };
+		7B808AE01BE53CA60041F188 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B808AEC1BE53D8C0041F188 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7B808AEE1BE53D920041F188 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7B808AF01BE53D970041F188 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7B808AF21BE53D9D0041F188 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		7B808AF41BE53DA20041F188 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		7B808AF61BE53DA60041F188 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		7B808AF81BE53DAF0041F188 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		7B808AFA1BE53DB50041F188 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		7B808AFC1BE53DBB0041F188 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		7B808AFE1BE53DC00041F188 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		7B808B001BE53DC60041F188 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7B808B021BE53DCB0041F188 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7BBBB4C31BE6CADD003A5E94 /* ZBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBarViewController.m; sourceTree = "<group>"; };
+		7BBBB4D41BE6CDE9003A5E94 /* ZBarSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBarSDK.h; sourceTree = "<group>"; };
+		C81B1902E22C5240360D3BB0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B808AB31BE53CA60041F188 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B062D971C00A16700B6F9D2 /* libzbar.a in Frameworks */,
+				7B808B031BE53DCB0041F188 /* SystemConfiguration.framework in Frameworks */,
+				7B808B011BE53DC60041F188 /* QuartzCore.framework in Frameworks */,
+				7B808AFF1BE53DC00041F188 /* OpenGLES.framework in Frameworks */,
+				7B808AFD1BE53DBB0041F188 /* libz.tbd in Frameworks */,
+				7B808AFB1BE53DB50041F188 /* libicucore.tbd in Frameworks */,
+				7B2FE1641BE5C82A0092F113 /* libiconv.tbd in Frameworks */,
+				7B808AF91BE53DAF0041F188 /* libc++.tbd in Frameworks */,
+				7B808AF71BE53DA60041F188 /* ImageIO.framework in Frameworks */,
+				7B808AF51BE53DA20041F188 /* GLKit.framework in Frameworks */,
+				7B2FE1621BE5C8170092F113 /* CoreVideo.framework in Frameworks */,
+				7B808AF31BE53D9D0041F188 /* CoreText.framework in Frameworks */,
+				7B2FE1601BE5C8080092F113 /* CoreMedia.framework in Frameworks */,
+				7B808AF11BE53D970041F188 /* CoreLocation.framework in Frameworks */,
+				7B808AEF1BE53D920041F188 /* CoreData.framework in Frameworks */,
+				7B808AED1BE53D8C0041F188 /* AVFoundation.framework in Frameworks */,
+				F2DB4E9A8D420B0C246BB6AB /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B808ACC1BE53CA60041F188 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B808AD71BE53CA60041F188 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F66C35329F525914142E20B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				33E514839FF606CE9DC19803 /* Pods.debug.xcconfig */,
+				7719C1F258B2BC41822EAD75 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		57531137BA710A7CA1424002 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B062D961C00A16700B6F9D2 /* libzbar.a */,
+				7B062D921C00A14A00B6F9D2 /* ZBarSDK */,
+				7B2FE1631BE5C82A0092F113 /* libiconv.tbd */,
+				7B2FE1611BE5C8170092F113 /* CoreVideo.framework */,
+				7B2FE15F1BE5C8080092F113 /* CoreMedia.framework */,
+				7B808B021BE53DCB0041F188 /* SystemConfiguration.framework */,
+				7B808B001BE53DC60041F188 /* QuartzCore.framework */,
+				7B808AFE1BE53DC00041F188 /* OpenGLES.framework */,
+				7B808AFC1BE53DBB0041F188 /* libz.tbd */,
+				7B808AFA1BE53DB50041F188 /* libicucore.tbd */,
+				7B808AF81BE53DAF0041F188 /* libc++.tbd */,
+				7B808AF61BE53DA60041F188 /* ImageIO.framework */,
+				7B808AF41BE53DA20041F188 /* GLKit.framework */,
+				7B808AF21BE53D9D0041F188 /* CoreText.framework */,
+				7B808AF01BE53D970041F188 /* CoreLocation.framework */,
+				7B808AEE1BE53D920041F188 /* CoreData.framework */,
+				7B808AEC1BE53D8C0041F188 /* AVFoundation.framework */,
+				C81B1902E22C5240360D3BB0 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B808AAD1BE53CA60041F188 = {
+			isa = PBXGroup;
+			children = (
+				7B062DB01C00B47A00B6F9D2 /* zbar-back.png */,
+				7B062DB11C00B47A00B6F9D2 /* zbar-help.html */,
+				7B062DB21C00B47A00B6F9D2 /* zbar-helpicons.png */,
+				7B062DB31C00B47A00B6F9D2 /* zbar-samples.png */,
+				7B062DAE1C00B44800B6F9D2 /* zbar-help.html */,
+				7B808AB81BE53CA60041F188 /* ZaiBike-iOS */,
+				7B808AD21BE53CA60041F188 /* ZaiBike-iOSTests */,
+				7B808ADD1BE53CA60041F188 /* ZaiBike-iOSUITests */,
+				7B808AB71BE53CA60041F188 /* Products */,
+				3F66C35329F525914142E20B /* Pods */,
+				57531137BA710A7CA1424002 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7B808AB71BE53CA60041F188 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B808AB61BE53CA60041F188 /* ZaiBike.app */,
+				7B808ACF1BE53CA60041F188 /* ZaiBike-iOSTests.xctest */,
+				7B808ADA1BE53CA60041F188 /* ZaiBike-iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B808AB81BE53CA60041F188 /* ZaiBike-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7B808ABC1BE53CA60041F188 /* AppDelegate.h */,
+				7B808ABD1BE53CA60041F188 /* AppDelegate.m */,
+				7B808ABF1BE53CA60041F188 /* ViewController.h */,
+				7B808AC01BE53CA60041F188 /* ViewController.m */,
+				7BBBB4D41BE6CDE9003A5E94 /* ZBarSDK.h */,
+				7B2FE15A1BE5ABAC0092F113 /* MainViewController.h */,
+				7B2FE15B1BE5ABAC0092F113 /* MainViewController.m */,
+				7B062D991C00A18400B6F9D2 /* ZBarSymbol.h */,
+				7B808AC71BE53CA60041F188 /* LaunchScreen.storyboard */,
+				7B062DA71C00B27500B6F9D2 /* ZBarViewController.h */,
+				7BBBB4C31BE6CADD003A5E94 /* ZBarViewController.m */,
+				7B808AC21BE53CA60041F188 /* Main.storyboard */,
+				7B808AC51BE53CA60041F188 /* Assets.xcassets */,
+				7B808ACA1BE53CA60041F188 /* Info.plist */,
+				7B808AB91BE53CA60041F188 /* Supporting Files */,
+				7B2FE17E1BE5F2D50092F113 /* URLHandler.h */,
+				7B2FE17F1BE5F2D50092F113 /* URLHandler.m */,
+			);
+			path = "ZaiBike-iOS";
+			sourceTree = "<group>";
+		};
+		7B808AB91BE53CA60041F188 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7B808ABA1BE53CA60041F188 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7B808AD21BE53CA60041F188 /* ZaiBike-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				7B808AD31BE53CA60041F188 /* ZaiBike_iOSTests.m */,
+				7B808AD51BE53CA60041F188 /* Info.plist */,
+			);
+			path = "ZaiBike-iOSTests";
+			sourceTree = "<group>";
+		};
+		7B808ADD1BE53CA60041F188 /* ZaiBike-iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7B808ADE1BE53CA60041F188 /* ZaiBike_iOSUITests.m */,
+				7B808AE01BE53CA60041F188 /* Info.plist */,
+			);
+			path = "ZaiBike-iOSUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7B808AB51BE53CA60041F188 /* ZaiBike-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B808AE31BE53CA60041F188 /* Build configuration list for PBXNativeTarget "ZaiBike-iOS" */;
+			buildPhases = (
+				51B736CB86801A4970A20869 /* Check Pods Manifest.lock */,
+				7B808AB21BE53CA60041F188 /* Sources */,
+				7B808AB31BE53CA60041F188 /* Frameworks */,
+				7B808AB41BE53CA60041F188 /* Resources */,
+				6C58C37470E1D3A4C62156D1 /* Embed Pods Frameworks */,
+				4B63E325AB0A54D3B94A5429 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ZaiBike-iOS";
+			productName = "ZaiBike-iOS";
+			productReference = 7B808AB61BE53CA60041F188 /* ZaiBike.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7B808ACE1BE53CA60041F188 /* ZaiBike-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B808AE61BE53CA60041F188 /* Build configuration list for PBXNativeTarget "ZaiBike-iOSTests" */;
+			buildPhases = (
+				7B808ACB1BE53CA60041F188 /* Sources */,
+				7B808ACC1BE53CA60041F188 /* Frameworks */,
+				7B808ACD1BE53CA60041F188 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B808AD11BE53CA60041F188 /* PBXTargetDependency */,
+			);
+			name = "ZaiBike-iOSTests";
+			productName = "ZaiBike-iOSTests";
+			productReference = 7B808ACF1BE53CA60041F188 /* ZaiBike-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7B808AD91BE53CA60041F188 /* ZaiBike-iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B808AE91BE53CA60041F188 /* Build configuration list for PBXNativeTarget "ZaiBike-iOSUITests" */;
+			buildPhases = (
+				7B808AD61BE53CA60041F188 /* Sources */,
+				7B808AD71BE53CA60041F188 /* Frameworks */,
+				7B808AD81BE53CA60041F188 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B808ADC1BE53CA60041F188 /* PBXTargetDependency */,
+			);
+			name = "ZaiBike-iOSUITests";
+			productName = "ZaiBike-iOSUITests";
+			productReference = 7B808ADA1BE53CA60041F188 /* ZaiBike-iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7B808AAE1BE53CA60041F188 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = ZaiBike;
+				TargetAttributes = {
+					7B808AB51BE53CA60041F188 = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 8FQQQXULLY;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
+					};
+					7B808ACE1BE53CA60041F188 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 7B808AB51BE53CA60041F188;
+					};
+					7B808AD91BE53CA60041F188 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 7B808AB51BE53CA60041F188;
+					};
+				};
+			};
+			buildConfigurationList = 7B808AB11BE53CA60041F188 /* Build configuration list for PBXProject "ZaiBike-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7B808AAD1BE53CA60041F188;
+			productRefGroup = 7B808AB71BE53CA60041F188 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7B808AB51BE53CA60041F188 /* ZaiBike-iOS */,
+				7B808ACE1BE53CA60041F188 /* ZaiBike-iOSTests */,
+				7B808AD91BE53CA60041F188 /* ZaiBike-iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7B808AB41BE53CA60041F188 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B062DB41C00B47A00B6F9D2 /* zbar-back.png in Resources */,
+				7B062DAF1C00B44800B6F9D2 /* zbar-help.html in Resources */,
+				7B062DB51C00B47A00B6F9D2 /* zbar-helpicons.png in Resources */,
+				7B062DB61C00B47A00B6F9D2 /* zbar-samples.png in Resources */,
+				7B808AC61BE53CA60041F188 /* Assets.xcassets in Resources */,
+				7B808AC91BE53CA60041F188 /* LaunchScreen.storyboard in Resources */,
+				7B808AC41BE53CA60041F188 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B808ACD1BE53CA60041F188 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B808AD81BE53CA60041F188 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B63E325AB0A54D3B94A5429 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51B736CB86801A4970A20869 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6C58C37470E1D3A4C62156D1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7B808AB21BE53CA60041F188 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B808AC11BE53CA60041F188 /* ViewController.m in Sources */,
+				7B808ABE1BE53CA60041F188 /* AppDelegate.m in Sources */,
+				7B808ABB1BE53CA60041F188 /* main.m in Sources */,
+				7B2FE15C1BE5ABAC0092F113 /* MainViewController.m in Sources */,
+				7B2FE1801BE5F2D50092F113 /* URLHandler.m in Sources */,
+				7BBBB4C41BE6CADD003A5E94 /* ZBarViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B808ACB1BE53CA60041F188 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B808AD41BE53CA60041F188 /* ZaiBike_iOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B808AD61BE53CA60041F188 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B808ADF1BE53CA60041F188 /* ZaiBike_iOSUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7B808AD11BE53CA60041F188 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B808AB51BE53CA60041F188 /* ZaiBike-iOS */;
+			targetProxy = 7B808AD01BE53CA60041F188 /* PBXContainerItemProxy */;
+		};
+		7B808ADC1BE53CA60041F188 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B808AB51BE53CA60041F188 /* ZaiBike-iOS */;
+			targetProxy = 7B808ADB1BE53CA60041F188 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7B808AC21BE53CA60041F188 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B808AC31BE53CA60041F188 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7B808AC71BE53CA60041F188 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B808AC81BE53CA60041F188 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7B808AE11BE53CA60041F188 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 armv6";
+			};
+			name = Debug;
+		};
+		7B808AE21BE53CA60041F188 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: May Ying Tee (8FQQQXULLY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: May Ying Tee (8FQQQXULLY)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "33167307-2648-439d-8649-fb503dbc5ea5";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 armv6";
+			};
+			name = Release;
+		};
+		7B808AE41BE53CA60041F188 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33E514839FF606CE9DC19803 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Frameworks\"",
+				);
+				INFOPLIST_FILE = "ZaiBike-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZBarSDK",
+					"$(PROJECT_DIR)",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = Zai.ZaiBike;
+				PRODUCT_NAME = ZaiBike;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 armv6";
+			};
+			name = Debug;
+		};
+		7B808AE51BE53CA60041F188 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7719C1F258B2BC41822EAD75 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Frameworks\"",
+				);
+				INFOPLIST_FILE = "ZaiBike-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZBarSDK",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Zai.ZaiBike;
+				PRODUCT_NAME = ZaiBike;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 armv6";
+			};
+			name = Release;
+		};
+		7B808AE71BE53CA60041F188 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "ZaiBike-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ZaiBike.ZaiBike-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZaiBike-iOS.app/ZaiBike-iOS";
+			};
+			name = Debug;
+		};
+		7B808AE81BE53CA60041F188 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "ZaiBike-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ZaiBike.ZaiBike-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZaiBike-iOS.app/ZaiBike-iOS";
+			};
+			name = Release;
+		};
+		7B808AEA1BE53CA60041F188 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "ZaiBike-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ZaiBike.ZaiBike-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "ZaiBike-iOS";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		7B808AEB1BE53CA60041F188 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "ZaiBike-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ZaiBike.ZaiBike-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "ZaiBike-iOS";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7B808AB11BE53CA60041F188 /* Build configuration list for PBXProject "ZaiBike-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B808AE11BE53CA60041F188 /* Debug */,
+				7B808AE21BE53CA60041F188 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B808AE31BE53CA60041F188 /* Build configuration list for PBXNativeTarget "ZaiBike-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B808AE41BE53CA60041F188 /* Debug */,
+				7B808AE51BE53CA60041F188 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B808AE61BE53CA60041F188 /* Build configuration list for PBXNativeTarget "ZaiBike-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B808AE71BE53CA60041F188 /* Debug */,
+				7B808AE81BE53CA60041F188 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B808AE91BE53CA60041F188 /* Build configuration list for PBXNativeTarget "ZaiBike-iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B808AEA1BE53CA60041F188 /* Debug */,
+				7B808AEB1BE53CA60041F188 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7B808AAE1BE53CA60041F188 /* Project object */;
+}
