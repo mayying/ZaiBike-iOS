@@ -19,15 +19,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.3.4</string>
+	<string>1.3.5.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>GPS Service is required</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>GPS is required to identify nearby available bikes and parking spaces</string>
 	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
+	<array/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -35,8 +33,10 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
-		<string>location-services</string>
-		<string>gps</string>
+	</array>
+	<key>UIRequires</key>
+	<array>
+		<string></string>
 	</array>
 	<key>UIRequiresFullScreen</key>
 	<true/>

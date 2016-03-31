@@ -9,35 +9,29 @@
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
 
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
 
-
+// force potrait screen mode
 -(BOOL)shouldAutorotate{
     return NO;
 }
 
+// Override point for customization after application launch.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     [GMSServices provideAPIKey:@"AIzaSyDpwE-Th5qAi72ROgMBBMX1tqDKRiY4k1o"];
+    
     //Your View Controller Identifiers defined in Interface Builder
-    NSString *firstViewControllerIdentifier  = @"ViewController";
-    NSString *secondViewControllerIdentifier = @"MainViewController";
+    NSString *mainViewControllerIdentifier  = @"MainViewController";
+    NSString *loginViewControllerIdentifier = @"WelcomeViewController";
     
     //check if the key exists and its value
     NSString* appHasLaunchedOnce = [[NSUserDefaults standardUserDefaults] stringForKey:@"user_id"];
-    NSLog(@"leilou mou %@", appHasLaunchedOnce);
+    
     //check which view controller identifier should be used
-    NSString *viewControllerIdentifier = appHasLaunchedOnce != NULL ? firstViewControllerIdentifier : secondViewControllerIdentifier;
+    NSString *viewControllerIdentifier = appHasLaunchedOnce != NULL ? mainViewControllerIdentifier : loginViewControllerIdentifier;
     
     //IF THE STORYBOARD EXISTS IN YOUR INFO.PLIST FILE AND YOU USE A SINGLE STORYBOARD
     UIStoryboard *storyboard = self.window.rootViewController.storyboard;
-    
-    //IF THE STORYBOARD DOESN'T EXIST IN YOUR INFO.PLIST FILE OR IF YOU USE MULTIPLE STORYBOARDS
-    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"YOUR_STORYBOARD_FILE_NAME" bundle:nil];
     
     //instantiate the view controller
     UIViewController *presentedViewController = [storyboard instantiateViewControllerWithIdentifier:viewControllerIdentifier];
