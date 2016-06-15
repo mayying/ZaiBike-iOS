@@ -7,8 +7,8 @@
 //
 
 #import "EmailLoginViewController.h"
-#import "SigninViewController.h"
 #import "RegisterViewController.h"
+#import "SignupViewController.h"
 #import "Utilities.h"
 @implementation EmailLoginViewController
 
@@ -18,7 +18,6 @@
     [super viewDidLoad];
     sharedManager = [DataManager sharedManager];
     [_emailTF setDelegate:self];
-    NSLog(@"asdasdasdasdasdddaa2 %llu", (long long unsigned) sharedManager.currentPage);
     [self setPage];
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
               initWithTarget:self action:@selector(handleSingleTap:)];
@@ -51,7 +50,7 @@
                 [self presentViewController:view animated:YES completion:NULL];
             }else if ([request[@"status"] isEqualToString:@"exist"]){
                 UIStoryboard *mySB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                SigninViewController *view = [mySB instantiateViewControllerWithIdentifier:@"SignupViewController"];
+                SignupViewController *view = [mySB instantiateViewControllerWithIdentifier:@"SignupViewController"];
                 sharedManager.signin = YES;
                 [self presentViewController:view animated:YES completion:NULL];
             }else{

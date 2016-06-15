@@ -9,7 +9,6 @@
 #import "RegisterViewController.h"
 #import "Utilities.h"
 #import "EmailLoginViewController.h"
-#import "SigninViewController.h"
 #import "SignupViewController.h"
 @implementation RegisterViewController
 
