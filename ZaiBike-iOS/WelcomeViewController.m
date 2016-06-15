@@ -8,7 +8,7 @@
 
 #import "WelcomeViewController.h"
 #import "EmailLoginViewController.h"
-#import "DesignFactory.h"
+#import "Utilities.h"
 
 @implementation WelcomeViewController
 
@@ -16,8 +16,11 @@
 
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    [[segue destinationViewController] setPage:pageControl.currentPage];
+- (IBAction)loginEmailBtn:(id)sender {
+    sharedManager.currentPage = (NSInteger *) pageControl.currentPage;
+    UIStoryboard *mySB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    EmailLoginViewController *view = [mySB instantiateViewControllerWithIdentifier:@"EmailLoginViewController"];
+    [self presentViewController:view animated:YES completion:NULL];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -25,15 +28,12 @@
     [super viewWillAppear:YES];
     CGSize pageScrollViewSize = self.view.frame.size;
     scrollView.contentSize = CGSizeMake(pageScrollViewSize.width * pageCount, 0);
-    //    NSLog(@"##### $$$$$ %lu --- %lu", (long unsigned)self.view.bounds.size.width, (long unsigned)self.view.bounds.size.height);
-    
     [self loadVisiblePages];
 }
 
 - (void) loadVisiblePages
 {
     CGFloat pageWidth = self.view.frame.size.width;
-    
     NSInteger page = (NSInteger)floor((scrollView.contentOffset.x * 2.0f + pageWidth) / (pageWidth * 2.0f));
     
     pageControl.currentPage = page;
@@ -53,7 +53,6 @@
     for (NSInteger i = lastPage+1; i<pageCount; i++) {
         [self purgePage:i];
     }
-    NSLog(@"page%lu    %lu --- %lu", (long unsigned)pageControl.currentPage, (long unsigned)self.view.bounds.size.width, (long unsigned)self.view.bounds.size.height);
     
 }
 
@@ -63,8 +62,6 @@
     {
         return;
     }
-    
-    
     
     UIView *pageView = [pageViews objectAtIndex:page];
     
@@ -76,10 +73,10 @@
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0.0f;
         
-        newPageView = [[UIImageView alloc] initWithImage:[DesignFactory getBgImage:page]];
+        newPageView = [[UIImageView alloc] initWithImage:[Utilities getBgImage:page]];
         newPageView.contentMode = UIViewContentModeScaleAspectFit;
         newPageView.frame = frame;
-        newPageView.backgroundColor = [DesignFactory getBgColor:page];
+        newPageView.backgroundColor = [Utilities getBgColor:page];
         
         [scrollView addSubview:newPageView];
         
@@ -111,9 +108,15 @@
 {
     [super viewDidLoad];
     
-    pageCount = [DesignFactory getBgImageCount];
+    pageCount = [Utilities getBgImageCount];
     
-    pageControl.currentPage = 0;
+    sharedManager = [DataManager sharedManager];
+    
+    if (sharedManager.currentPage != NULL){
+        pageControl.currentPage = (NSInteger) sharedManager.currentPage;
+    }else{
+        pageControl.currentPage = 0;
+    }    
     pageControl.numberOfPages = pageCount;
     
     pageViews = [[NSMutableArray alloc]init];

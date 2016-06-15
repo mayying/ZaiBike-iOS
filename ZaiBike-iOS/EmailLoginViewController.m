@@ -7,15 +7,19 @@
 //
 
 #import "EmailLoginViewController.h"
-#import "DesignFactory.h"
-#import "ServerConnectionFactory.h"
-
+#import "SigninViewController.h"
+#import "RegisterViewController.h"
+#import "Utilities.h"
 @implementation EmailLoginViewController
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    sharedManager = [DataManager sharedManager];
+    [_emailTF setDelegate:self];
+    NSLog(@"asdasdasdasdasdddaa2 %llu", (long long unsigned) sharedManager.currentPage);
+    [self setPage];
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
               initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
@@ -31,36 +35,34 @@
     
 }
 
--(void)loginEmailBtn:(id)sender{
-    NSString* email = [_emailTF text];
-    if ([self validateEmail:email]){
-        NSString *param = [NSString stringWithFormat:@"action=check_exist&email=%@", email];
-        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-        NSDictionary* output = [ServerConnectionFactory dispatcher: @"emailLogin" parameter: param semaphore:sema];
-        NSLog(@"output %@", output);
+- (BOOL) textFieldShouldReturn:(UITextField *) textField{
+    [textField resignFirstResponder];
+    sharedManager.email = [_emailTF text];
+    if ([self validateEmail:sharedManager.email]){
+        NSString *param = [NSString stringWithFormat:@"action=check_exist&email=%@", sharedManager.email];
+        NSLog(@"param %@", param);
+        [Utilities httpPOST :param domain: @"signup" completion:^(NSDictionary *request){
+            NSLog(@"emailloginviewcontroller%@", request);
+            if ([request[@"status"] isEqualToString:@"fail"]){
+                [Utilities alert:[NSString stringWithFormat: @"Error message: %@", request[@"reason"]] title:@"Fail" view:self];
+            }else if ([request[@"status"] isEqualToString:@"new"]){
+                UIStoryboard *mySB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                RegisterViewController *view = [mySB instantiateViewControllerWithIdentifier:@"RegisterViewController"];
+                [self presentViewController:view animated:YES completion:NULL];
+            }else if ([request[@"status"] isEqualToString:@"exist"]){
+                UIStoryboard *mySB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                SigninViewController *view = [mySB instantiateViewControllerWithIdentifier:@"SignupViewController"];
+                sharedManager.signin = YES;
+                [self presentViewController:view animated:YES completion:NULL];
+            }else{
+                [Utilities alert:@"Unknown error occured. Please contact the developer" title:@"Login/Register Error" view:self];
+            }
+        }];
     }else{
-        [self alert:@"Please register/login with your registered email address"];
+        [Utilities alert:@"Please register/login with your registered email address" title:@"Invalid Email" view:self];
     }
-    
-}
 
--(void)alert:(NSString *) msg
-{
-    UIAlertController *myAlert = [UIAlertController
-                                  alertControllerWithTitle:@"Invalid email!"
-                                  message:msg
-                                  preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [myAlert dismissViewControllerAnimated:YES completion:nil];
-                         }];
-    
-    [myAlert addAction:ok];
-    [super presentViewController:myAlert animated:YES completion:nil];
-    
+    return YES;
 }
 
 - (BOOL) validateEmail: (NSString *) candidate {
@@ -70,10 +72,11 @@
     return [emailTest evaluateWithObject:candidate];
 }
 
--(void)setPage:(NSInteger) page{
+-(void)setPage{
     CIFilter *gaussianBlurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
     [gaussianBlurFilter setDefaults];
-    CIImage *inputImage = [CIImage imageWithCGImage:[[DesignFactory getBgImage:page] CGImage]];
+    CIImage *inputImage = [CIImage imageWithCGImage:[[Utilities getBgImage:(NSInteger)sharedManager.currentPage] CGImage]];
+
     [gaussianBlurFilter setValue:inputImage forKey:kCIInputImageKey];
     [gaussianBlurFilter setValue:@25 forKey:kCIInputRadiusKey];
     
@@ -87,12 +90,12 @@
     UIImageView *newPageView = [[UIImageView alloc] initWithImage:image];
     newPageView.contentMode = UIViewContentModeScaleAspectFit;
     newPageView.frame = frame;
-    self.view.backgroundColor = [DesignFactory getBgColor:page];
+    self.view.backgroundColor = [Utilities getBgColor:(NSInteger)sharedManager.currentPage];
     [self.view addSubview:newPageView];
 
-    _label_0.textColor = [DesignFactory getLabelColor:page];
-    _label_1.textColor = [DesignFactory getLabelColor:page];
-    _emailTF.textColor = [DesignFactory getLabelColor:page];
+    _label_0.textColor = [Utilities getLabelColor:(NSInteger)sharedManager.currentPage];
+    _label_1.textColor = [Utilities getLabelColor:(NSInteger)sharedManager.currentPage];
+    _emailTF.textColor = [Utilities getLabelColor:(NSInteger)sharedManager.currentPage];
     
 }
 @end

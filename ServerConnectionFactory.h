@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ServerConnectionFactory : UIViewController
-+ (NSDictionary *) dispatcher:(NSString*) msg parameter:(NSString *) param semaphore: (dispatch_semaphore_t)sema;
++ (NSDictionary *) httpPOST : (NSString *) params domain: (NSString*) domainName completion:(void (^)(NSDictionary *)) completion;
 
 @end

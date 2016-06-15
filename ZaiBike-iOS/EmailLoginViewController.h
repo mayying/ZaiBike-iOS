@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DesignFactory.h"
+#import "DataManager.h"
 
-@interface EmailLoginViewController : UIViewController
+@interface EmailLoginViewController : UIViewController <UITextViewDelegate>{
+    DataManager *sharedManager;
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTF;
 @property (weak, nonatomic) IBOutlet UILabel *label_0;
 @property (weak, nonatomic) IBOutlet UILabel *label_1;
-@property DesignFactory *designFactory;
-- (IBAction)loginEmailBtn:(id)sender;
 - (IBAction)loginFbBtn:(id)sender;
-- (void) setPage:(NSInteger) page;
+- (void) setPage;
 
 
 @end

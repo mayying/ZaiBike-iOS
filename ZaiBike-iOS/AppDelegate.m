@@ -6,6 +6,9 @@
 //  Copyright © 2015 ZaiBike. All rights reserved.
 //
 
+#import "RegisterViewController.h"
+#import "Utilities.h"
+#import "DataManager.h"
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
 
@@ -40,6 +43,44 @@
     [self.window setRootViewController:presentedViewController];
     
     return YES;
+}
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+//    format should [be zaibikeios://verification?1123]
+    if ([[url host] isEqualToString:@"verification"]) {
+        
+        UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+        
+        while (topController.presentedViewController) {
+            topController = topController.presentedViewController;
+        }
+
+        if ([topController isKindOfClass: [RegisterViewController class]]){
+            NSLog(@"query string: %@", [url query]);
+            NSLog(@"url recieved: %@", url);
+            NSLog(@"host: %@", [url host]);
+            NSLog(@"url path: %@", [url path]);
+            NSArray *pairs = [[url query] componentsSeparatedByString:@"&"];
+            NSString *digits = pairs[0];
+            UIStoryboard *mySB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            RegisterViewController *view = [mySB instantiateViewControllerWithIdentifier:@"RegisterViewController"];
+            NSLog(@"what the shit are u doing");
+            
+            DataManager *sharedManager = [DataManager sharedManager];
+            sharedManager.digit0 = [digits substringWithRange:NSMakeRange(0, 1)];
+            sharedManager.digit1 = [digits substringWithRange:NSMakeRange(1, 1)];
+            sharedManager.digit2 = [digits substringWithRange:NSMakeRange(2, 1)];
+            sharedManager.digit3 = [digits substringWithRange:NSMakeRange(3, 1)];
+//            view.email = pairs[1];
+            [[[[UIApplication sharedApplication] delegate] window] setRootViewController:view];
+            return YES;
+        }else{
+            NSLog(@"CANNOT LA");
+        }
+    }
+    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

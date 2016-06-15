@@ -10,6 +10,8 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "MainViewController.h"
 #import "ZBarViewController.h"
+#import "Utilities.h"
+#import "URLHandler.h"
 
 @implementation MainViewController{
     GMSMapView *mapView;
@@ -55,8 +57,11 @@
     
     [locationManager startUpdatingLocation];
     // latitude and longitude of the current location of the device.
-    double lati = locationManager.location.coordinate.latitude;
-    double longi = locationManager.location.coordinate.longitude;
+//    double lati = locationManager.location.coordinate.latitude;
+//    double longi = locationManager.location.coordinate.longitude;
+    
+    double lati = 1.34250f;
+    double longi = 103.964334f;
     NSLog(@"Latitude = %f", lati);
     NSLog(@"Longitude = %f", longi);
     
@@ -66,6 +71,9 @@
                                                                  zoom:15.5f];
     
     mapView = [GMSMapView mapWithFrame:[[UIScreen mainScreen] bounds] camera:camera];
+//    CGRect viewBounds = self.view.bounds;
+//    viewBounds.size.height -= 90;
+//    mapView = [GMSMapView mapWithFrame:viewBounds camera:camera];
     mapView.myLocationEnabled = YES;
     mapView.mapType = kGMSTypeHybrid;
     [self.view addSubview:mapView];
@@ -124,57 +132,56 @@
     
     NSString *param = [NSString stringWithFormat:@"action=search_bike"];
     
-//    URLHandler *urlObject = [[URLHandler alloc] init];
-//    [urlObject httpPOST :param completion:^(NSDictionary *request)
-//     {
-//         NSDictionary *bikes = request[@"data"];
-//         
-//         for (NSDictionary *bike in bikes)
-//         {
-//             NSArray *foo = [[bikes valueForKeyPath:[NSString stringWithFormat: @"%@.locale", bike]] componentsSeparatedByString: @"|"];
-//             int j = 0;
-//             for (NSArray *i in marker_des)
-//             {
-//                 if ([[foo firstObject] floatValue] == [i[0] floatValue])
-//                 {
-//                     int initValue = [[bike_num objectAtIndex:j] intValue];
-//                     int finalValue = initValue + 1;
-//                     NSString *newItem = [NSString stringWithFormat:@"%i", finalValue];
-//                     [bike_num replaceObjectAtIndex:j withObject:newItem];
-//                     break;
-//                 }
-//                 j += 1;
-//             }
-//         }
-//         
-//         int k = 0;
-//         UIImage *image = nil;
-//         
-//         if (isRenting)
-//         {
-//             image = [UIImage imageNamed:@"cycle_marker.png"];
-//         }else
-//         {
-//             image = [UIImage imageNamed:@"walk_marker.png"];
-//         }
-//         
-//         for (NSArray *i in marker_des){
-//             if (([[bike_num objectAtIndex: k] intValue] == 0) && isRenting){
-//                 k += 1;
-//                 continue;
-//             }
-//             
-//             GMSMarker *marker = [[GMSMarker alloc] init];
-//             marker.position = CLLocationCoordinate2DMake([i[0] floatValue], [i[1] floatValue]);
-//             marker.title = i[2];
-//             if (isRenting){
-//                 marker.snippet = [NSString stringWithFormat: @"Number of bikes: %i", [[bike_num objectAtIndex: k] intValue]];
-//             }
-//             marker.map = mapView;
-//             marker.icon = image;
-//             k += 1;
-//         }
-//     }];
+    URLHandler *urlObject = [[URLHandler alloc] init];
+    [urlObject httpPOST :param completion:^(NSDictionary *request)
+     {
+         NSDictionary *bikes = request[@"data"];
+         
+         for (NSDictionary *bike in bikes)
+         {
+             NSArray *foo = [[bikes valueForKeyPath:[NSString stringWithFormat: @"%@.locale", bike]] componentsSeparatedByString: @"|"];
+             int j = 0;
+             for (NSArray *i in marker_des)
+             {
+                 if ([[foo firstObject] floatValue] == [i[0] floatValue])
+                 {
+                     int initValue = [[bike_num objectAtIndex:j] intValue];
+                     int finalValue = initValue + 1;
+                     NSString *newItem = [NSString stringWithFormat:@"%i", finalValue];
+                     [bike_num replaceObjectAtIndex:j withObject:newItem];
+                     break;
+                 }
+                 j += 1;
+             }
+         }
+         
+         int k = 0;
+         UIImage *image = nil;
+         if (isRenting)
+         {
+             image = [UIImage imageNamed:@"walk_marker.png"];
+         }else
+         {
+             image = [UIImage imageNamed:@"cycle_marker.png"];
+         }
+         
+         for (NSArray *i in marker_des){
+             if (([[bike_num objectAtIndex: k] intValue] == 0) && isRenting){
+                 k += 1;
+                 continue;
+             }
+             
+             GMSMarker *marker = [[GMSMarker alloc] init];
+             marker.position = CLLocationCoordinate2DMake([i[0] floatValue], [i[1] floatValue]);
+             marker.title = i[2];
+             if (isRenting == YES){
+                 marker.snippet = [NSString stringWithFormat: @"Number of bikes: %i", [[bike_num objectAtIndex: k] intValue]];
+             }
+             marker.map = mapView;
+             marker.icon = image;
+             k += 1;
+         }
+     }];
 }
 
 -(IBAction)toggleTransit:(UIButton*)sender {
@@ -373,7 +380,7 @@
             [mas.mutableString setString:@"Scan to Rent"];
             [qrScanner setAttributedTitle:mas forState:UIControlStateNormal];
             
-            [self alert:@"Thank you for riding ZaiBike!" title:@"Bike Returned!"];
+            [Utilities alert:@"Thank you for riding ZaiBike!" title:@"Bike Returned!" view:self];
         }else{
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"bikeRent"];
             [[NSUserDefaults standardUserDefaults] synchronize];
@@ -384,12 +391,11 @@
             [mas_ch2return.mutableString setString:@"Scan to Return"];
             [qrScanner setAttributedTitle:mas_ch2return forState:UIControlStateNormal];
             
-            [self alert:[NSString stringWithFormat:@"Have a pleasant journey!"] title:@"Bike Rented!"];
+            [Utilities alert:[NSString stringWithFormat:@"Have a pleasant journey!"] title:@"Bike Rented!" view:self];
         }
     }else{
         
         NSArray *arr = [symbol.data componentsSeparatedByString:@";"];
-        NSLog(@"arrrrrrrrrrrrrrrrrr%@", arr);
         // if it's renting, they want to return
         if ([arr count] == 3) {
             NSString *booking_id = [[NSUserDefaults standardUserDefaults] stringForKey:@"booking_id"];
@@ -398,88 +404,88 @@
             NSString *param = [NSString stringWithFormat:@"action=park_bike&bike_id=%@&booking_id=%@&lat=%@&lng=%@", bike_id, booking_id, arr[1], arr[2]];
             NSLog(@"trying to return %@", param);
             
-//            URLHandler *urlObject = [[URLHandler alloc] init];
-//            [urlObject httpPOST :param completion:^(NSDictionary *request){
-//                NSString *status = request[@"status"];
-//                NSLog(@"return status %@", status);
-//                
-//                if ([status isEqualToString:@"ok"]) {
-//                    
-//                    
-//                    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"bikeRent"];
-//                    [[NSUserDefaults standardUserDefaults] synchronize];
-//                    [self initMarkers];
-//                    
-//                    [combi_code setText:@""];
-//                    [combi_code setBackgroundColor: [UIColor clearColor]];
-//                    
-//                    NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
-//                    NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
-//                    [mas.mutableString setString:@"Scan to Rent"];
-//                    [qrScanner setAttributedTitle:mas forState:UIControlStateNormal];
-//                    
-//                    [self alert:@"Thank you for riding with ZaiBike!" title:@"Bike Returned!"];
-//                    
-//                }else if([status isEqualToString:@"no user"]){
-//                    [self alert:@"This bike is currently unoccupied. Do rent first then return!" title:@"Oopsie!" ];
-//                }else if([status isEqualToString:@"no booking"]){
-//                    [self alert:@"You currently do not have an active session! Please rent a bike before returning it." title:@"Oopsie!"];
-//                }else{
-//                    [self alert:@"Return Error! Please contact ZaiBike team @97578476" title:@"Oopsie!"];
-//                }
-//            }];
-//            
-//            // if it's not renting, they want to rent
-//        }else if([arr count] == 1){
-//            NSString *bike_id = arr[0];
-//            NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"user_id"];
-//            
-//            NSString *param = [NSString stringWithFormat:@"action=rent_bike&bike_id=%@&user_id=%@", bike_id, userID];
-//            URLHandler *urlObject = [[URLHandler alloc] init];
-//            [urlObject httpPOST :param completion:^(NSDictionary *request){
-//                NSString *status = request[@"status"];
-//                NSString *booking_id = request[@"booking_id"];
-//                lock_combi = request[@"lock_combi"];
-//                
-//                NSLog(@"rent status %@", status);
-//                NSLog(@"booking id %@", booking_id);
-//                NSLog(@"lock_combi %@", lock_combi);
-//                
-//                if ([status isEqualToString:@"ok"]){
-//                    [self initMarkers];
-//                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"bikeRent"];
-//                    [[NSUserDefaults standardUserDefaults] synchronize];
-//                    
-//                    [[NSUserDefaults standardUserDefaults] setObject: booking_id forKey:@"booking_id"];
-//                    [[NSUserDefaults standardUserDefaults] synchronize];
-//                    
-//                    [[NSUserDefaults standardUserDefaults] setObject: bike_id forKey:@"bike_id"];
-//                    [[NSUserDefaults standardUserDefaults] synchronize];
-//                    
-//                    [[NSUserDefaults standardUserDefaults] setObject: lock_combi forKey:@"lock_combi"];
-//                    [[NSUserDefaults standardUserDefaults] synchronize];
-//                    
-//                    [combi_code setText:[NSString stringWithFormat: @"  LOCK COMBINATION: %@  ",lock_combi]];
-//                    [combi_code setBackgroundColor:[UIColor colorWithRed:(254/255.0f) green:(141/255.0f) blue:(9/255.0f) alpha:1.0]];
-//                    
-//                    NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
-//                    NSMutableAttributedString *mas_ch2return = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
-//                    
-//                    [mas_ch2return.mutableString setString:@"Scan to Return"];
-//                    [qrScanner setAttributedTitle:mas_ch2return forState:UIControlStateNormal];
-//                    
-//                    [self alert:[NSString stringWithFormat:@"Lock Combination: %@\nHave a pleasant journey!",lock_combi] title:@"Bike Rented!"];
-//                }else if([status isEqualToString:@"currently renting bike"]){
-//                    [self alert:@"Looks like you are still renting one of the ZaiBikes. Please return first!" title:@"Oopsie!"];
-//                }else if([status isEqualToString:@"bike not available"]){
-//                    [self alert:@"This bike is still being rented! Please contact ZaiBike team @97578476 if you really want to ride with this bike" title:@"Oopsie!"];
-//                }else{
-//                    [self alert:@"Rent error! Please contact ZaiBike team@97578476" title:@"Oopsie!"];
-//                }
-//            }];
+            URLHandler *urlObject = [[URLHandler alloc] init];
+            [urlObject httpPOST :param completion:^(NSDictionary *request){
+                NSString *status = request[@"status"];
+                NSLog(@"return status %@", status);
+                
+                if ([status isEqualToString:@"ok"]) {
+                    
+                    
+                    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"bikeRent"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    [self initMarkers];
+                    
+                    [combi_code setText:@""];
+                    [combi_code setBackgroundColor: [UIColor clearColor]];
+                    
+                    NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
+                    NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
+                    [mas.mutableString setString:@"Scan to Rent"];
+                    [qrScanner setAttributedTitle:mas forState:UIControlStateNormal];
+                    
+                    [Utilities alert:@"Thank you for riding with ZaiBike!" title:@"Bike Returned!" view:self];
+                    
+                }else if([status isEqualToString:@"no user"]){
+                    [Utilities alert:@"This bike is currently unoccupied. Do rent first then return!" title:@"Oopsie!" view:self];
+                }else if([status isEqualToString:@"no booking"]){
+                    [Utilities alert:@"You currently do not have an active session! Please rent a bike before returning it." title:@"Oopsie!" view:self];
+                }else{
+                    [Utilities alert:@"Return Error! Please contact ZaiBike team @97578476" title:@"Oopsie!" view:self];
+                }
+            }];
+            
+            // if it's not renting, they want to rent
+        }else if([arr count] == 1){
+            NSString *bike_id = arr[0];
+            NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"user_id"];
+            
+            NSString *param = [NSString stringWithFormat:@"action=rent_bike&bike_id=%@&user_id=%@", bike_id, userID];
+            URLHandler *urlObject = [[URLHandler alloc] init];
+            [urlObject httpPOST :param completion:^(NSDictionary *request){
+                NSString *status = request[@"status"];
+                NSString *booking_id = request[@"booking_id"];
+                lock_combi = request[@"lock_combi"];
+                
+                NSLog(@"rent status %@", status);
+                NSLog(@"booking id %@", booking_id);
+                NSLog(@"lock_combi %@", lock_combi);
+                
+                if ([status isEqualToString:@"ok"]){
+                    [self initMarkers];
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"bikeRent"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    [[NSUserDefaults standardUserDefaults] setObject: booking_id forKey:@"booking_id"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    [[NSUserDefaults standardUserDefaults] setObject: bike_id forKey:@"bike_id"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    [[NSUserDefaults standardUserDefaults] setObject: lock_combi forKey:@"lock_combi"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    [combi_code setText:[NSString stringWithFormat: @"  LOCK COMBINATION: %@  ",lock_combi]];
+                    [combi_code setBackgroundColor:[UIColor colorWithRed:(254/255.0f) green:(141/255.0f) blue:(9/255.0f) alpha:1.0]];
+                    
+                    NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
+                    NSMutableAttributedString *mas_ch2return = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
+                    
+                    [mas_ch2return.mutableString setString:@"Scan to Return"];
+                    [qrScanner setAttributedTitle:mas_ch2return forState:UIControlStateNormal];
+                    
+                    [Utilities alert:[NSString stringWithFormat:@"Lock Combination: %@\nHave a pleasant journey!",lock_combi] title:@"Bike Rented!" view:self];
+                }else if([status isEqualToString:@"currently renting bike"]){
+                    [Utilities alert:@"Looks like you are still renting one of the ZaiBikes. Please return first!" title:@"Oopsie!" view: self];
+                }else if([status isEqualToString:@"bike not available"]){
+                    [Utilities alert:@"This bike is still being rented! Please contact ZaiBike team @97578476 if you really want to ride with this bike" title:@"Oopsie!" view:self];
+                }else{
+                    [Utilities alert:@"Rent error! Please contact ZaiBike team@97578476" title:@"Oopsie!" view:self];
+                }
+            }];
             
         }else{
-            [self alert:@"Rent/Return Error! Please contact ZaiBike team @97578476" title:@"Oopsie!" ];
+            [Utilities alert:@"Rent/Return Error! Please contact ZaiBike team @97578476" title:@"Oopsie!" view:self];
         }
     }
     
@@ -514,13 +520,4 @@
     }];
 }
 
--(void)alert:(NSString *) msg title:(NSString *)title
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                    message:msg
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
 @end

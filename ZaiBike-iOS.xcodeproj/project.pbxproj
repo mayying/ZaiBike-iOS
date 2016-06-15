@@ -12,11 +12,13 @@
 		7B062DB41C00B47A00B6F9D2 /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B062DB01C00B47A00B6F9D2 /* zbar-back.png */; };
 		7B062DB51C00B47A00B6F9D2 /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B062DB21C00B47A00B6F9D2 /* zbar-helpicons.png */; };
 		7B062DB61C00B47A00B6F9D2 /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B062DB31C00B47A00B6F9D2 /* zbar-samples.png */; };
+		7B0F76411D081E00003395C4 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0F76401D081E00003395C4 /* DataManager.m */; };
 		7B2FE15C1BE5ABAC0092F113 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2FE15B1BE5ABAC0092F113 /* LoginViewController.m */; };
 		7B2FE1601BE5C8080092F113 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE15F1BE5C8080092F113 /* CoreMedia.framework */; };
 		7B2FE1621BE5C8170092F113 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE1611BE5C8170092F113 /* CoreVideo.framework */; };
 		7B2FE1641BE5C82A0092F113 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE1631BE5C82A0092F113 /* libiconv.tbd */; };
-		7B5A6A171CABB55700E3AB3A /* DesignFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A6A161CABB55700E3AB3A /* DesignFactory.m */; };
+		7B522A6B1CADF873001C1ED4 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B522A6A1CADF873001C1ED4 /* RegisterViewController.m */; };
+		7B76C0741CEBF1D000975EFF /* URLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B76C0731CEBF1D000975EFF /* URLHandler.m */; };
 		7B808ABB1BE53CA60041F188 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B808ABA1BE53CA60041F188 /* main.m */; };
 		7B808ABE1BE53CA60041F188 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B808ABD1BE53CA60041F188 /* AppDelegate.m */; };
 		7B808AC11BE53CA60041F188 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B808AC01BE53CA60041F188 /* MainViewController.m */; };
@@ -37,9 +39,10 @@
 		7B808AFF1BE53DC00041F188 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808AFE1BE53DC00041F188 /* OpenGLES.framework */; };
 		7B808B011BE53DC60041F188 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808B001BE53DC60041F188 /* QuartzCore.framework */; };
 		7B808B031BE53DCB0041F188 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B808B021BE53DCB0041F188 /* SystemConfiguration.framework */; };
+		7B83A53E1D00A7890067B598 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B83A53D1D00A7890067B598 /* SignupViewController.m */; };
 		7B9E78481C7E0D0800013EAC /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9E78471C7E0D0800013EAC /* WelcomeViewController.m */; };
 		7BBBB4C41BE6CADD003A5E94 /* ZBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBB4C31BE6CADD003A5E94 /* ZBarViewController.m */; };
-		7BE024DD1CABF803002D46B1 /* ServerConnectionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE024DC1CABF803002D46B1 /* ServerConnectionFactory.m */; };
+		7BD2606C1CF8A78200E0C233 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD2606B1CF8A78200E0C233 /* Utilities.m */; };
 		7BFF13071CA681340034A53C /* EmailLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF13061CA681340034A53C /* EmailLoginViewController.m */; };
 		F2DB4E9A8D420B0C246BB6AB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C81B1902E22C5240360D3BB0 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -73,13 +76,17 @@
 		7B062DB11C00B47A00B6F9D2 /* zbar-help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zbar-help.html"; path = "Resources/zbar-help.html"; sourceTree = "<group>"; };
 		7B062DB21C00B47A00B6F9D2 /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zbar-helpicons.png"; path = "Resources/zbar-helpicons.png"; sourceTree = "<group>"; };
 		7B062DB31C00B47A00B6F9D2 /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zbar-samples.png"; path = "Resources/zbar-samples.png"; sourceTree = "<group>"; };
+		7B0F763F1D081E00003395C4 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		7B0F76401D081E00003395C4 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		7B2FE15A1BE5ABAC0092F113 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		7B2FE15B1BE5ABAC0092F113 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		7B2FE15F1BE5C8080092F113 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7B2FE1611BE5C8170092F113 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7B2FE1631BE5C82A0092F113 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		7B5A6A151CABB55700E3AB3A /* DesignFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DesignFactory.h; path = "ZaiBike-iOS/DesignFactory.h"; sourceTree = "<group>"; };
-		7B5A6A161CABB55700E3AB3A /* DesignFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DesignFactory.m; path = "ZaiBike-iOS/DesignFactory.m"; sourceTree = "<group>"; };
+		7B522A691CADF873001C1ED4 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		7B522A6A1CADF873001C1ED4 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		7B76C0721CEBF1D000975EFF /* URLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLHandler.h; sourceTree = "<group>"; };
+		7B76C0731CEBF1D000975EFF /* URLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLHandler.m; sourceTree = "<group>"; };
 		7B808AB61BE53CA60041F188 /* ZaiBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaiBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B808ABA1BE53CA60041F188 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7B808ABC1BE53CA60041F188 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -108,12 +115,14 @@
 		7B808AFE1BE53DC00041F188 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		7B808B001BE53DC60041F188 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7B808B021BE53DCB0041F188 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7B83A53C1D00A7890067B598 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		7B83A53D1D00A7890067B598 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		7B9E78461C7E0D0800013EAC /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		7B9E78471C7E0D0800013EAC /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		7BBBB4C31BE6CADD003A5E94 /* ZBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBarViewController.m; sourceTree = "<group>"; };
 		7BBBB4D41BE6CDE9003A5E94 /* ZBarSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBarSDK.h; sourceTree = "<group>"; };
-		7BE024DB1CABF803002D46B1 /* ServerConnectionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnectionFactory.h; sourceTree = "<group>"; };
-		7BE024DC1CABF803002D46B1 /* ServerConnectionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnectionFactory.m; sourceTree = "<group>"; };
+		7BD2606A1CF8A78200E0C233 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		7BD2606B1CF8A78200E0C233 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		7BFF13051CA681340034A53C /* EmailLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailLoginViewController.h; sourceTree = "<group>"; };
 		7BFF13061CA681340034A53C /* EmailLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailLoginViewController.m; sourceTree = "<group>"; };
 		C81B1902E22C5240360D3BB0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,7 +212,6 @@
 				7B062DB21C00B47A00B6F9D2 /* zbar-helpicons.png */,
 				7B062DB31C00B47A00B6F9D2 /* zbar-samples.png */,
 				7B062DAE1C00B44800B6F9D2 /* zbar-help.html */,
-				7BE024DA1CABF7C1002D46B1 /* Factory */,
 				7B808AB81BE53CA60041F188 /* ZaiBike-iOS */,
 				7B808AD21BE53CA60041F188 /* ZaiBike-iOSTests */,
 				7B808ADD1BE53CA60041F188 /* ZaiBike-iOSUITests */,
@@ -226,24 +234,34 @@
 		7B808AB81BE53CA60041F188 /* ZaiBike-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				7B2FE15A1BE5ABAC0092F113 /* LoginViewController.h */,
-				7B2FE15B1BE5ABAC0092F113 /* LoginViewController.m */,
 				7B808ABC1BE53CA60041F188 /* AppDelegate.h */,
 				7B808ABD1BE53CA60041F188 /* AppDelegate.m */,
+				7B0F763F1D081E00003395C4 /* DataManager.h */,
+				7B0F76401D081E00003395C4 /* DataManager.m */,
 				7BFF13051CA681340034A53C /* EmailLoginViewController.h */,
 				7BFF13061CA681340034A53C /* EmailLoginViewController.m */,
+				7B2FE15A1BE5ABAC0092F113 /* LoginViewController.h */,
+				7B2FE15B1BE5ABAC0092F113 /* LoginViewController.m */,
 				7B808ABF1BE53CA60041F188 /* MainViewController.h */,
 				7B808AC01BE53CA60041F188 /* MainViewController.m */,
+				7B522A691CADF873001C1ED4 /* RegisterViewController.h */,
+				7B522A6A1CADF873001C1ED4 /* RegisterViewController.m */,
+				7B83A53C1D00A7890067B598 /* SignupViewController.h */,
+				7B83A53D1D00A7890067B598 /* SignupViewController.m */,
+				7B76C0721CEBF1D000975EFF /* URLHandler.h */,
+				7B76C0731CEBF1D000975EFF /* URLHandler.m */,
+				7BD2606A1CF8A78200E0C233 /* Utilities.h */,
+				7BD2606B1CF8A78200E0C233 /* Utilities.m */,
 				7B9E78461C7E0D0800013EAC /* WelcomeViewController.h */,
 				7B9E78471C7E0D0800013EAC /* WelcomeViewController.m */,
 				7BBBB4D41BE6CDE9003A5E94 /* ZBarSDK.h */,
 				7B062D991C00A18400B6F9D2 /* ZBarSymbol.h */,
-				7B808AC71BE53CA60041F188 /* LaunchScreen.storyboard */,
 				7B062DA71C00B27500B6F9D2 /* ZBarViewController.h */,
 				7BBBB4C31BE6CADD003A5E94 /* ZBarViewController.m */,
+				7B808ACA1BE53CA60041F188 /* Info.plist */,
+				7B808AC71BE53CA60041F188 /* LaunchScreen.storyboard */,
 				7B808AC21BE53CA60041F188 /* Main.storyboard */,
 				7B808AC51BE53CA60041F188 /* Assets.xcassets */,
-				7B808ACA1BE53CA60041F188 /* Info.plist */,
 				7B808AB91BE53CA60041F188 /* Supporting Files */,
 			);
 			path = "ZaiBike-iOS";
@@ -273,17 +291,6 @@
 				7B808AE01BE53CA60041F188 /* Info.plist */,
 			);
 			path = "ZaiBike-iOSUITests";
-			sourceTree = "<group>";
-		};
-		7BE024DA1CABF7C1002D46B1 /* Factory */ = {
-			isa = PBXGroup;
-			children = (
-				7B5A6A151CABB55700E3AB3A /* DesignFactory.h */,
-				7B5A6A161CABB55700E3AB3A /* DesignFactory.m */,
-				7BE024DB1CABF803002D46B1 /* ServerConnectionFactory.h */,
-				7BE024DC1CABF803002D46B1 /* ServerConnectionFactory.m */,
-			);
-			name = Factory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,11 +491,14 @@
 				7B808ABE1BE53CA60041F188 /* AppDelegate.m in Sources */,
 				7B808ABB1BE53CA60041F188 /* main.m in Sources */,
 				7B2FE15C1BE5ABAC0092F113 /* LoginViewController.m in Sources */,
-				7BE024DD1CABF803002D46B1 /* ServerConnectionFactory.m in Sources */,
+				7B522A6B1CADF873001C1ED4 /* RegisterViewController.m in Sources */,
+				7B0F76411D081E00003395C4 /* DataManager.m in Sources */,
+				7B83A53E1D00A7890067B598 /* SignupViewController.m in Sources */,
 				7BFF13071CA681340034A53C /* EmailLoginViewController.m in Sources */,
-				7B5A6A171CABB55700E3AB3A /* DesignFactory.m in Sources */,
+				7BD2606C1CF8A78200E0C233 /* Utilities.m in Sources */,
 				7B9E78481C7E0D0800013EAC /* WelcomeViewController.m in Sources */,
 				7BBBB4C41BE6CADD003A5E94 /* ZBarViewController.m in Sources */,
+				7B76C0741CEBF1D000975EFF /* URLHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,7 +654,7 @@
 					"\"${PODS_ROOT}/GoogleMaps/Frameworks\"",
 				);
 				INFOPLIST_FILE = "ZaiBike-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -673,7 +683,7 @@
 					"\"${PODS_ROOT}/GoogleMaps/Frameworks\"",
 				);
 				INFOPLIST_FILE = "ZaiBike-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

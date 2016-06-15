@@ -12,6 +12,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *numberTF;
 @property (nonatomic, weak) IBOutlet UIButton *confirmBtn;
 - (IBAction)confirm:(id)sender;
-- (void)alert:(NSString *)msg;
 
 @end
