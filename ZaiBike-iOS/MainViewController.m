@@ -17,6 +17,7 @@
 
 @implementation MainViewController{
     GMSMapView *mapView;
+    
 }
 
 -(BOOL)shouldAutorotate{
