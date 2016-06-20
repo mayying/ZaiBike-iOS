@@ -61,6 +61,7 @@
     CIContext *context = [CIContext contextWithOptions:nil];
     CGImageRef cgimg = [context createCGImage:outputImage fromRect:[inputImage extent]];
     UIImage *image = [UIImage imageWithCGImage:cgimg];
+    CGImageRelease(cgimg);
     
     CGRect frame = self.view.bounds;
     
@@ -71,6 +72,8 @@
     [self.view addSubview:newPageView];
     
     _label_0.textColor = [Utilities getLabelColor:(NSInteger)sharedManager.currentPage];
+    [self.view sendSubviewToBack:newPageView];
+
     
 }
 

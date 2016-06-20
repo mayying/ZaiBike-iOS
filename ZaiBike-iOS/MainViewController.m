@@ -10,7 +10,9 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "MainViewController.h"
 #import "ZBarViewController.h"
+#import "WelcomeViewController.h"
 #import "Utilities.h"
+#import "DataManager.h"
 #import "URLHandler.h"
 
 @implementation MainViewController{
@@ -24,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [qrScanner.bottomAnchor constraintEqualToAnchor:self.bottomLayoutGuide.topAnchor constant:(qrScanner.bounds.size.width/2)].active = YES;
+
+    
     // query server for rent/return status
     isRenting = [[NSUserDefaults standardUserDefaults] boolForKey:@"bikeRent"];
     lock_combi = [[NSUserDefaults standardUserDefaults] stringForKey:@"lock_combi"];
@@ -32,10 +37,14 @@
     // toggle rent/return status
     [self toggleStatus];
     
-    [mapView addSubview:currentLocationBtn];
-    [mapView addSubview:qrScanner];
-    [mapView bringSubviewToFront:currentLocationBtn];
-    [mapView bringSubviewToFront:qrScanner];
+    [self.view addSubview:currentLocationBtn];
+    [self.view addSubview:inTransit];
+    [self.view addSubview:qrScanner];
+
+    [self.view bringSubviewToFront:currentLocationBtn];
+    [self.view bringSubviewToFront:inTransit];
+    [self.view bringSubviewToFront:qrScanner];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,7 +92,6 @@
 }
 
 
-
 // toggle qr scanner label, and decide if should show combination code
 - (void) toggleStatus
 {
@@ -92,13 +100,13 @@
     
     if (isRenting)
     {
-        [mas.mutableString setString:@"Scan to Return"];
+//        [mas.mutableString setString:@"Scan to Return"];
         [qrScanner setAttributedTitle:mas forState:UIControlStateNormal];
         [combi_code setText:[NSString stringWithFormat: @"  LOCK COMBINATION: %@  ",lock_combi]];
         [combi_code setBackgroundColor:[UIColor colorWithRed:(254/255.0f) green:(141/255.0f) blue:(9/255.0f) alpha:0.7]];
     }else
     {
-        [mas.mutableString setString:@"Scan to Rent"];
+//        [mas.mutableString setString:@"Scan to Rent"];
         [qrScanner setAttributedTitle:mas forState:UIControlStateNormal];
         //[_qrScanner.titleLabel setFont: [_qrScanner.titleLabel.font fontWithSize:10.0f]];
         [combi_code setText:@""];
@@ -159,10 +167,10 @@
          UIImage *image = nil;
          if (isRenting)
          {
-             image = [UIImage imageNamed:@"walk_marker.png"];
+             image = [self imageWithImage: [UIImage imageNamed:@"walk_marker.png"] scaledToSize:CGSizeMake(83, 93)];
          }else
          {
-             image = [UIImage imageNamed:@"cycle_marker.png"];
+             image = [self imageWithImage:[UIImage imageNamed:@"cycle_marker.png"]scaledToSize:CGSizeMake(83, 93)];
          }
          
          for (NSArray *i in marker_des){
@@ -184,27 +192,40 @@
      }];
 }
 
+- (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext(newSize);
+    
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 -(IBAction)toggleTransit:(UIButton*)sender {
     sender.selected = !sender.selected;
     [self initMarkers];
-    NSAttributedString *attributedTitle = [inTransit attributedTitleForState:UIControlStateNormal];
-    NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
+//    NSAttributedString *attributedTitle = [inTransit attributedTitleForState:UIControlStateNormal];
+//    NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
     
     if (sender.selected){
-        [mas.mutableString setString:@"Parking Bike"];
-        [mas addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, [@"Parking Bike" length])];
-        [inTransit setAttributedTitle:mas forState:UIControlStateSelected];
+//        [mas.mutableString setString:@"Parking Bike"];
+//        [mas addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, [@"Parking Bike" length])];
+//        [inTransit setAttributedTitle:mas forState:UIControlStateSelected];
         [inTransit setBackgroundImage:[UIImage imageNamed:@"cycling.png"] forState:UIControlStateSelected];
         isRenting = NO;
     }else{
-        [mas.mutableString setString:@"Locating Bike"];
-        [mas addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:(254/255.0f) green:(141/255.0f) blue:(9/255.0f) alpha:0.7] range:NSMakeRange(0, [@"Locating Bike" length])];
-        [inTransit setAttributedTitle:mas forState:UIControlStateNormal];
+//        [mas.mutableString setString:@"Locating Bike"];
+//        [mas addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:(254/255.0f) green:(141/255.0f) blue:(9/255.0f) alpha:0.7] range:NSMakeRange(0, [@"Locating Bike" length])];
+//        [inTransit setAttributedTitle:mas forState:UIControlStateNormal];
         [inTransit setBackgroundImage:[UIImage imageNamed:@"walking.png"] forState:UIControlStateSelected];
         isRenting = YES;
     }
     [mapView clear];
 }
+
 
 // Show current location
 - (IBAction)showCurrentLocation:(id)sender {
@@ -224,6 +245,7 @@
     [mapView animateToCameraPosition:camera];
     NSLog(@"%f", mapView.myLocation.coordinate.longitude);
 }
+
 
 
 - (IBAction)showSettings:(id)sender {
@@ -258,41 +280,52 @@
 
 - (IBAction)showMore:(UIButton*)sender {
     sender.selected = !sender.selected;
-    NSAttributedString *attributedTitleMore = [inTransit attributedTitleForState:UIControlStateNormal];
-    NSMutableAttributedString *masMore = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitleMore];
+//    NSAttributedString *attributedTitleMore = [inTransit attributedTitleForState:UIControlStateNormal];
+//    NSMutableAttributedString *masMore = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitleMore];
     
     if (sender.selected) {
         [UIView animateWithDuration:.5 animations:^{
             settings.hidden = NO;
-            CGAffineTransform translate = CGAffineTransformMakeTranslation(-85, 0);
-            CGAffineTransform rotate = CGAffineTransformMakeRotation(4*M_PI);
-            CGAffineTransform concat = CGAffineTransformConcat(rotate, translate);
+            feedback.hidden = NO;
+            signOut.hidden = NO;
+            NSLog(@"%.2f", settings.bounds.size.height);
+            [settings setTransform:[self rotateAndTranslate:-70 angle:M_PI]];
+            [feedback setTransform:[self rotateAndTranslate:-141.5 angle:M_PI]];
+            [signOut setTransform:[self rotateAndTranslate:-211.5 angle:M_PI]];
             
-            [settings setTransform:concat];
-            
-            [masMore.mutableString setString:@""];
-            [more setAttributedTitle:masMore forState:UIControlStateNormal];
+//            [masMore.mutableString setString:@""];
+//            [more setAttributedTitle:masMore forState:UIControlStateNormal];
             more.transform = CGAffineTransformMakeRotation(M_PI_2);
         }];
         
     }else{
         
         [UIView animateWithDuration:.5 animations:^{
-            CGAffineTransform translate = CGAffineTransformMakeTranslation(0, 0);
-            CGAffineTransform rotate = CGAffineTransformMakeRotation(0);
-            CGAffineTransform concat = CGAffineTransformConcat(rotate, translate);
-            
-            [settings setTransform:concat];
-            
-            [masMore.mutableString setString:@"More"];
-            [masMore addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:(254/255.0f) green:(141/255.0f) blue:(9/255.0f) alpha:1.0] range:NSMakeRange(0, [@"More" length])];
-            [more setAttributedTitle:masMore forState:UIControlStateNormal];
-            more.transform = CGAffineTransformMakeRotation	(4*M_PI);
+            [settings setTransform:[self rotateAndTranslatetoOri]];
+            [feedback setTransform:[self rotateAndTranslatetoOri]];
+            [signOut setTransform:[self rotateAndTranslatetoOri]];
+
+            more.transform = CGAffineTransformMakeRotation	(4 * M_PI);
         }completion:^(BOOL finished) {
             settings.hidden = YES;
+            feedback.hidden = YES;
+            signOut.hidden = YES;
+
         }];
     }
     
+}
+
+- (CGAffineTransform) rotateAndTranslatetoOri{
+    return [self rotateAndTranslate:0 angle:0];
+}
+
+- (CGAffineTransform) rotateAndTranslate:(CGFloat) y angle:(CGFloat) angle{
+    CGAffineTransform translate = CGAffineTransformMakeTranslation(0, y);
+    CGAffineTransform rotate = CGAffineTransformMakeRotation(angle);
+    CGAffineTransform concat = CGAffineTransformConcat(rotate, translate);
+
+    return concat;
 }
 
 - (IBAction)showSupport:(id)sender {
@@ -320,24 +353,59 @@
     
     [alert addButtonWithTitle:@"Feedback now"];
     
-    [alert show];}
+    [alert show];
+}
+
+- (IBAction)signOut:(id)sender {
+    NSString *title = @"Are you sure you want to log out?";
+//    NSString *msg = @"Are you sure you want to log out?";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:@""
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:nil];
+    
+    [alert addButtonWithTitle:@"Log Out"];
+    
+    [alert show];
+    
+}
 
 
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-    if([title isEqualToString:@"Support ZaiBike"])
-    {
+    NSLog(title);
+    if([title isEqualToString:@"Support ZaiBike"]){
         NSURL *url = [ [ NSURL alloc ] initWithString: @"http://igg.me/at/zaibike/x" ];
         
         [[UIApplication sharedApplication] openURL:url];
-    }else if([title isEqualToString:@"Feedback now"])
-    {
+    }else if([title isEqualToString:@"Feedback now"]){
         NSLog(@"got lei");
         NSURL *url = [ [ NSURL alloc ] initWithString: @"https://docs.google.com/forms/d/18ggrzVatjR27XPu570Re54bY4nETpJ9FreRbl9GRpwY/viewform" ];
         
         [[UIApplication sharedApplication] openURL:url];
+    }else if([title isEqualToString:@"Log Out"]){
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"bikeRent"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"booking_id"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"bike_id"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_id"];
+        NSString* appHasLaunchedOnce = [[NSUserDefaults standardUserDefaults] stringForKey:@"user_id"];
+        NSLog(@"sdadad %@",  appHasLaunchedOnce);
+        DataManager *sharedManager = [DataManager sharedManager];
+        sharedManager.email = NULL;
+        sharedManager.step = 0;
+        sharedManager.signin = NO;
+        sharedManager.currentPage = NULL;
+        sharedManager.digit0 = NULL;
+        sharedManager.digit1 = NULL;
+        sharedManager.digit2 = NULL;
+        sharedManager.digit3 = NULL;
+        
+        UIStoryboard *mySB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        WelcomeViewController *view = [mySB instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
+        [self presentViewController:view animated:YES completion:NULL];
     }
 }
 
@@ -492,6 +560,7 @@
     [_codeReader dismissViewControllerAnimated:YES completion:nil];
     
 }
+
 
 - (void)removeAnimate
 {

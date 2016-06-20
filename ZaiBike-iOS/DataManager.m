@@ -20,17 +20,25 @@
 @synthesize digit3;
 
 + (id) sharedManager{
-    static DataManager *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-        
-    });
-    return sharedMyManager;
+//    static DataManager *sharedMyManager = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        sharedMyManager = [[self alloc] init];
+//    });
+//    return sharedMyManager;
+    static DataManager *sharedManager = nil;
+    @synchronized(self) {
+        if (sharedManager == nil)
+            sharedManager = [[self alloc] init];
+    }
+    return sharedManager;
 }
 
 - (id) init{
-    if (self == [super init]){
+    if (self = [super init]){
+        NSLog(@"self %@", self);
+        NSLog(@"enter here???????? %@", self);
+
         step = 0;
         signin = NO;
         currentPage = NULL;

@@ -25,6 +25,8 @@
     IBOutlet UIButton *settings;
     IBOutlet UIButton *crowdtivate;
     IBOutlet UILabel *combi_code;
+    __weak IBOutlet UIButton *signOut;
+    __weak IBOutlet UIButton *feedback;
     
     CLLocationManager *locationManager;
 }
@@ -38,6 +40,7 @@
 - (IBAction)showMore:(UIButton *)sender;
 - (IBAction)showSupport:(id)sender;
 - (IBAction)showFeedback:(id)sender;
+- (IBAction)signOut:(id)sender;
 
 - (void)initMarkers;
 - (void)toggleStatus;

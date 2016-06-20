@@ -15,6 +15,7 @@
 @implementation SignupViewController
 
 - (void) viewDidLoad{
+    [super viewDidLoad];
     sharedManager = [DataManager sharedManager];
     [self setPage];
     [_textfield setDelegate:self];
@@ -50,17 +51,21 @@
 - (void)didSwipe:(UISwipeGestureRecognizer*)swipe{
     
     if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
-        NSLog(@"Swipe Right");
+        NSLog(@"Swipe Right" );
+        NSLog(sharedManager.signin ? @"sign in nin inin" : @"sign in your headddddd");
         if (sharedManager.step == 1 && !sharedManager.signin){
             [_label_0 setText:@"What's your name?"];
             [_textfield setText: _fullName];
             [_textfield setSecureTextEntry:NO];
+            [_textfield setKeyboardType:UIKeyboardTypeASCIICapable];
+            [_textfield setAutocapitalizationType:UITextAutocapitalizationTypeWords];
             [_textfield setPlaceholder:@"Full name"];
             sharedManager.step -= 1;
         }else if (sharedManager.step == 2){
             [_label_0 setText:@"Please create a password of length 8 to 16."];
             [_textfield setText: _password];
             [_textfield setSecureTextEntry:YES];
+            [_textfield setAutocapitalizationType:UITextAutocapitalizationTypeNone];
             [_textfield setPlaceholder:@"Password"];
             sharedManager.step -= 1;
         }
@@ -122,6 +127,7 @@
         }
         
         [_label_0 setText:@"Please re-enter your password."];
+        NSLog(@"ok %llu", (long long unsigned) sharedManager.step);
         [_textfield setText:@""];
         [textField setSecureTextEntry:YES];
         [_textfield setPlaceholder:@"Password"];
@@ -136,23 +142,28 @@
         }
         
         NSString *param;
+        NSLog(sharedManager.signin? @"fuck u u uuu this is sign in": @"fuck u u u uuu this is nott sign in");
+
+        
         if (sharedManager.signin){
             param = [NSString stringWithFormat:@"action=change_pw&email=%@&password=%@", sharedManager.email, _password];
+        }else{
+            param = [NSString stringWithFormat:@"action=create_acc&email=%@&password=%@&name=%@", sharedManager.email, _password, _fullName];
         }
-        param = [NSString stringWithFormat:@"action=create_acc&email=%@&password=%@&name=%@", sharedManager.email, _password, _fullName];
-        [Utilities httpPOST :param domain: @"signup" completion:^(NSDictionary *request){
-            if ([request[@"status"] isEqualToString:@"fail"]){
-                [Utilities alert:[NSString stringWithFormat: @"Error message: %@", request[@"reason"]] title:@"Fail" view:self];
-            }else if ([request[@"status"] isEqualToString:@"ok"]){
-                long long unsigned int userID = [request[@"user_id"] longLongValue];
-                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat: @"%llu", userID] forKey:@"user_id"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                // Instantiate View Controller from Storyboard
-                UIStoryboard *mySB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                MainViewController *view = [mySB instantiateViewControllerWithIdentifier:@"MainViewController"];
-                [self presentViewController:view animated:YES completion:NULL];
-            }
-        }];
+            [Utilities httpPOST :param domain: @"signup" completion:^(NSDictionary *request){
+                if ([request[@"status"] isEqualToString:@"fail"]){
+                    [Utilities alert:[NSString stringWithFormat: @"Error message: %@", request[@"reason"]] title:@"Fail" view:self];
+                }else if ([request[@"status"] isEqualToString:@"ok"]){
+                    long long unsigned int userID = [request[@"user_id"] longLongValue];
+                    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat: @"%llu", userID] forKey:@"user_id"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    // Instantiate View Controller from Storyboard
+                    UIStoryboard *mySB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    MainViewController *view = [mySB instantiateViewControllerWithIdentifier:@"MainViewController"];
+                    [self presentViewController:view animated:YES completion:NULL];
+                }
+            }];
+        
     }
     sharedManager.step += 1;
     [textField becomeFirstResponder];
@@ -167,6 +178,7 @@
             UIStoryboard *mySB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             RegisterViewController *view = [mySB instantiateViewControllerWithIdentifier:@"RegisterViewController"];
             sharedManager.step = 1;
+            sharedManager.signin = YES;
             [self presentViewController:view animated:YES completion:NULL];
             
         }else{
@@ -176,7 +188,6 @@
     
     
 }
-
 
 - (IBAction)loginFbBtn:(id)sender {
     
@@ -193,7 +204,7 @@
     CIContext *context = [CIContext contextWithOptions:nil];
     CGImageRef cgimg = [context createCGImage:outputImage fromRect:[inputImage extent]];
     UIImage *image = [UIImage imageWithCGImage:cgimg];
-    
+    CGImageRelease(cgimg);
     CGRect frame = self.view.bounds;
     
     UIImageView *newPageView = [[UIImageView alloc] initWithImage:image];
@@ -205,6 +216,8 @@
     _label_0.textColor = [Utilities getLabelColor:(NSInteger) sharedManager.currentPage];
     _label_1.textColor = [Utilities getLabelColor:(NSInteger) sharedManager.currentPage];
     _textfield.textColor = [Utilities getLabelColor:(NSInteger) sharedManager.currentPage];
+    [self.view sendSubviewToBack:newPageView];
+
 }
 
 

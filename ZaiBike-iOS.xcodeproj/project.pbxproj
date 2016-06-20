@@ -17,6 +17,7 @@
 		7B2FE1601BE5C8080092F113 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE15F1BE5C8080092F113 /* CoreMedia.framework */; };
 		7B2FE1621BE5C8170092F113 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE1611BE5C8170092F113 /* CoreVideo.framework */; };
 		7B2FE1641BE5C82A0092F113 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE1631BE5C82A0092F113 /* libiconv.tbd */; };
+		7B3DEFA81D182EC200636CCC /* UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3DEFA71D182EC200636CCC /* UIColor.m */; };
 		7B522A6B1CADF873001C1ED4 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B522A6A1CADF873001C1ED4 /* RegisterViewController.m */; };
 		7B76C0741CEBF1D000975EFF /* URLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B76C0731CEBF1D000975EFF /* URLHandler.m */; };
 		7B808ABB1BE53CA60041F188 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B808ABA1BE53CA60041F188 /* main.m */; };
@@ -43,6 +44,7 @@
 		7B9E78481C7E0D0800013EAC /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9E78471C7E0D0800013EAC /* WelcomeViewController.m */; };
 		7BBBB4C41BE6CADD003A5E94 /* ZBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBB4C31BE6CADD003A5E94 /* ZBarViewController.m */; };
 		7BD2606C1CF8A78200E0C233 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD2606B1CF8A78200E0C233 /* Utilities.m */; };
+		7BD8C7681D18809C0066E834 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7BD8C7661D18809C0066E834 /* Model.xcdatamodeld */; };
 		7BFF13071CA681340034A53C /* EmailLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF13061CA681340034A53C /* EmailLoginViewController.m */; };
 		F2DB4E9A8D420B0C246BB6AB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C81B1902E22C5240360D3BB0 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -83,6 +85,8 @@
 		7B2FE15F1BE5C8080092F113 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7B2FE1611BE5C8170092F113 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7B2FE1631BE5C82A0092F113 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		7B3DEFA61D182EC200636CCC /* UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColor.h; sourceTree = "<group>"; };
+		7B3DEFA71D182EC200636CCC /* UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColor.m; sourceTree = "<group>"; };
 		7B522A691CADF873001C1ED4 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		7B522A6A1CADF873001C1ED4 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		7B76C0721CEBF1D000975EFF /* URLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLHandler.h; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		7BBBB4D41BE6CDE9003A5E94 /* ZBarSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBarSDK.h; sourceTree = "<group>"; };
 		7BD2606A1CF8A78200E0C233 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		7BD2606B1CF8A78200E0C233 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		7BD8C7671D18809C0066E834 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7BFF13051CA681340034A53C /* EmailLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailLoginViewController.h; sourceTree = "<group>"; };
 		7BFF13061CA681340034A53C /* EmailLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailLoginViewController.m; sourceTree = "<group>"; };
 		C81B1902E22C5240360D3BB0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +242,7 @@
 				7B808ABC1BE53CA60041F188 /* AppDelegate.h */,
 				7B808ABD1BE53CA60041F188 /* AppDelegate.m */,
 				7B0F763F1D081E00003395C4 /* DataManager.h */,
+				7BD8C7661D18809C0066E834 /* Model.xcdatamodeld */,
 				7B0F76401D081E00003395C4 /* DataManager.m */,
 				7BFF13051CA681340034A53C /* EmailLoginViewController.h */,
 				7BFF13061CA681340034A53C /* EmailLoginViewController.m */,
@@ -250,6 +256,8 @@
 				7B83A53D1D00A7890067B598 /* SignupViewController.m */,
 				7B76C0721CEBF1D000975EFF /* URLHandler.h */,
 				7B76C0731CEBF1D000975EFF /* URLHandler.m */,
+				7B3DEFA61D182EC200636CCC /* UIColor.h */,
+				7B3DEFA71D182EC200636CCC /* UIColor.m */,
 				7BD2606A1CF8A78200E0C233 /* Utilities.h */,
 				7BD2606B1CF8A78200E0C233 /* Utilities.m */,
 				7B9E78461C7E0D0800013EAC /* WelcomeViewController.h */,
@@ -490,9 +498,11 @@
 				7B808AC11BE53CA60041F188 /* MainViewController.m in Sources */,
 				7B808ABE1BE53CA60041F188 /* AppDelegate.m in Sources */,
 				7B808ABB1BE53CA60041F188 /* main.m in Sources */,
+				7BD8C7681D18809C0066E834 /* Model.xcdatamodeld in Sources */,
 				7B2FE15C1BE5ABAC0092F113 /* LoginViewController.m in Sources */,
 				7B522A6B1CADF873001C1ED4 /* RegisterViewController.m in Sources */,
 				7B0F76411D081E00003395C4 /* DataManager.m in Sources */,
+				7B3DEFA81D182EC200636CCC /* UIColor.m in Sources */,
 				7B83A53E1D00A7890067B598 /* SignupViewController.m in Sources */,
 				7BFF13071CA681340034A53C /* EmailLoginViewController.m in Sources */,
 				7BD2606C1CF8A78200E0C233 /* Utilities.m in Sources */,
@@ -786,6 +796,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7BD8C7661D18809C0066E834 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7BD8C7671D18809C0066E834 /* Model.xcdatamodel */,
+			);
+			currentVersion = 7BD8C7671D18809C0066E834 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7B808AAE1BE53CA60041F188 /* Project object */;
 }

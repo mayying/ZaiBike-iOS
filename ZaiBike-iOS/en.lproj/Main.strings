@@ -1,0 +1,66 @@
+
+/* Class = "UIButton"; normalTitle = "Login with Facebook"; ObjectID = "0hP-Lx-9Yl"; */
+"0hP-Lx-9Yl.normalTitle" = "Login with Facebook";
+
+/* Class = "UILabel"; text = "_____________________________________________________________________________________________"; ObjectID = "1dZ-uj-wz4"; */
+"1dZ-uj-wz4.text" = "_____________________________________________________________________________________________";
+
+/* Class = "UIButton"; normalTitle = "Change email address"; ObjectID = "4ZX-1b-SsB"; */
+"4ZX-1b-SsB.normalTitle" = "Change email address";
+
+/* Class = "UILabel"; text = "_____________________________________________________________________________________________"; ObjectID = "4t1-hO-SHJ"; */
+"4t1-hO-SHJ.text" = "_____________________________________________________________________________________________";
+
+/* Class = "UITextField"; placeholder = "John Smith"; ObjectID = "543-Dz-TaA"; */
+"543-Dz-TaA.placeholder" = "John Smith";
+
+/* Class = "UILabel"; text = "Welcome! Please enter your mobile number to sign in."; ObjectID = "62K-v1-18v"; */
+"62K-v1-18v.text" = "Welcome! Please enter your mobile number to sign in.";
+
+/* Class = "UILabel"; text = "Please enter your email address to login or register for a new account."; ObjectID = "7iv-sF-T7S"; */
+"7iv-sF-T7S.text" = "Please enter your email address to login or register for a new account.";
+
+/* Class = "UIViewController"; title = "MainViewController"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "MainViewController";
+
+/* Class = "UIViewController"; title = "LoginViewController"; ObjectID = "BzO-jE-myM"; */
+"BzO-jE-myM.title" = "LoginViewController";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "EZJ-ZG-FVU"; */
+"EZJ-ZG-FVU.normalTitle" = "X";
+
+/* Class = "UITextField"; placeholder = "Email Address"; ObjectID = "J8G-mv-3gW"; */
+"J8G-mv-3gW.placeholder" = "Email Address";
+
+/* Class = "UIButton"; normalTitle = "Forget your password?"; ObjectID = "TqK-05-wDe"; */
+"TqK-05-wDe.normalTitle" = "Forget your password?";
+
+/* Class = "UIButton"; normalTitle = "CONFIRM"; ObjectID = "UsI-mO-669"; */
+"UsI-mO-669.normalTitle" = "CONFIRM";
+
+/* Class = "UILabel"; text = "Invalid verification code!"; ObjectID = "XQm-7B-zhp"; */
+"XQm-7B-zhp.text" = "Invalid verification code!";
+
+/* Class = "UIButton"; normalTitle = "Login with Facebook"; ObjectID = "ahu-fv-Xz4"; */
+"ahu-fv-Xz4.normalTitle" = "Login with Facebook";
+
+/* Class = "UIButton"; normalTitle = "Login with Facebook"; ObjectID = "glZ-1c-8yk"; */
+"glZ-1c-8yk.normalTitle" = "Login with Facebook";
+
+/* Class = "UILabel"; text = "Welcome onboard! Check your email to obtain the 4-digit code. Then enter it here:"; ObjectID = "ikh-Er-iDM"; */
+"ikh-Er-iDM.text" = "Welcome onboard! Check your email to obtain the 4-digit code. Then enter it here:";
+
+/* Class = "UIButton"; normalTitle = "Login with Email"; ObjectID = "k2Z-kD-8gc"; */
+"k2Z-kD-8gc.normalTitle" = "Login with Email";
+
+/* Class = "UILabel"; text = "Password Incorrect!"; ObjectID = "kGI-NZ-7e9"; */
+"kGI-NZ-7e9.text" = "Password Incorrect!";
+
+/* Class = "UILabel"; text = "What's your full name?"; ObjectID = "paF-Hy-5Ih"; */
+"paF-Hy-5Ih.text" = "What's your full name?";
+
+/* Class = "UIButton"; normalTitle = "Login with Facebook"; ObjectID = "tR7-fE-5ys"; */
+"tR7-fE-5ys.normalTitle" = "Login with Facebook";
+
+/* Class = "UIButton"; normalTitle = "Change email address"; ObjectID = "yhg-Br-VGt"; */
+"yhg-Br-VGt.normalTitle" = "Change email address";

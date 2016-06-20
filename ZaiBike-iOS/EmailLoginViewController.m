@@ -17,12 +17,14 @@
 {
     [super viewDidLoad];
     sharedManager = [DataManager sharedManager];
+    NSLog([_emailTF isHidden]? @"YES": @"NO");
     [_emailTF setDelegate:self];
     [self setPage];
     UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
               initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapper];
+    [_emailTF becomeFirstResponder];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender
@@ -83,7 +85,7 @@
     CIContext *context = [CIContext contextWithOptions:nil];
     CGImageRef cgimg = [context createCGImage:outputImage fromRect:[inputImage extent]];
     UIImage *image = [UIImage imageWithCGImage:cgimg];
-    
+//    CGImageRelease(cgimg);
     CGRect frame = self.view.bounds;
     
     UIImageView *newPageView = [[UIImageView alloc] initWithImage:image];
@@ -95,6 +97,10 @@
     _label_0.textColor = [Utilities getLabelColor:(NSInteger)sharedManager.currentPage];
     _label_1.textColor = [Utilities getLabelColor:(NSInteger)sharedManager.currentPage];
     _emailTF.textColor = [Utilities getLabelColor:(NSInteger)sharedManager.currentPage];
+    
+    [self.view sendSubviewToBack:newPageView];
+
+
     
 }
 @end
