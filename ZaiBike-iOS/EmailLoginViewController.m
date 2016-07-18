@@ -47,6 +47,8 @@
             if ([request[@"status"] isEqualToString:@"fail"]){
                 [Utilities alert:[NSString stringWithFormat: @"Error message: %@", request[@"reason"]] title:@"Fail" view:self];
             }else if ([request[@"status"] isEqualToString:@"new"]){
+                sharedManager.signin = NO;
+                sharedManager.step = 0;
                 UIStoryboard *mySB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 RegisterViewController *view = [mySB instantiateViewControllerWithIdentifier:@"RegisterViewController"];
                 [self presentViewController:view animated:YES completion:NULL];
@@ -76,6 +78,8 @@
 -(void)setPage{
     CIFilter *gaussianBlurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
     [gaussianBlurFilter setDefaults];
+    
+    
     CIImage *inputImage = [CIImage imageWithCGImage:[[Utilities getBgImage:(NSInteger)sharedManager.currentPage] CGImage]];
 
     [gaussianBlurFilter setValue:inputImage forKey:kCIInputImageKey];

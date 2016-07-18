@@ -25,7 +25,7 @@
     
     //Your View Controller Identifiers defined in Interface Builder
     NSString *mainViewControllerIdentifier  = @"MainViewController";
-    NSString *loginViewControllerIdentifier = @"WelcomeViewController";
+    NSString *loginViewControllerIdentifier = @"LoginViewController";
     
     //check if the key exists and its value
     NSString* appHasLaunchedOnce = [[NSUserDefaults standardUserDefaults] stringForKey:@"user_id"];

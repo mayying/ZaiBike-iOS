@@ -26,10 +26,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%f %f %f %f %f", qrScanner.frame.size.width, qrScanner.frame.size.height, self.view.window.bounds.size.height, self.view.window.frame.size.width, (qrScanner.frame.size.height/self.view.bounds.size.width)*300);
     
-    [qrScanner.bottomAnchor constraintEqualToAnchor:self.bottomLayoutGuide.topAnchor constant:(qrScanner.bounds.size.width/2)].active = YES;
+//    qrScanner.translatesAutoresizingMaskIntoConstraints = YES;
+    [qrScanner.heightAnchor constraintEqualToAnchor:qrScanner.widthAnchor multiplier:1].active = YES;
+//    qrScanner.frame = CGRectMake(qrScanner.frame.origin.x, 100, qrScanner.frame.size.width, qrScanner.frame.size.height);
+    
+    NSLog(@"%f %f %f %f %f", qrScanner.frame.size.width, qrScanner.frame.size.height, qrScanner.frame.origin.x, qrScanner.frame.origin.y, (qrScanner.frame.size.height/self.view.bounds.size.width)*300);
+    qrScanner.layer.anchorPoint = CGPointMake(0.5, 0.5);
+    [qrScanner.centerYAnchor constraintEqualToAnchor:self.bottomLayoutGuide.topAnchor].active = YES;
 
-    
     // query server for rent/return status
     isRenting = [[NSUserDefaults standardUserDefaults] boolForKey:@"bikeRent"];
     lock_combi = [[NSUserDefaults standardUserDefaults] stringForKey:@"lock_combi"];
@@ -105,6 +111,9 @@
         [qrScanner setAttributedTitle:mas forState:UIControlStateNormal];
         [combi_code setText:[NSString stringWithFormat: @"  LOCK COMBINATION: %@  ",lock_combi]];
         [combi_code setBackgroundColor:[UIColor colorWithRed:(254/255.0f) green:(141/255.0f) blue:(9/255.0f) alpha:0.7]];
+        [UIView animateWithDuration:.5 animations:^{
+            qrScanner.transform = CGAffineTransformMakeRotation(M_PI);
+        }];
     }else
     {
 //        [mas.mutableString setString:@"Scan to Rent"];
@@ -112,8 +121,11 @@
         //[_qrScanner.titleLabel setFont: [_qrScanner.titleLabel.font fontWithSize:10.0f]];
         [combi_code setText:@""];
         [combi_code setBackgroundColor:[UIColor clearColor]];
+        [UIView animateWithDuration:.5 animations:^{
+            qrScanner.transform = CGAffineTransformMakeRotation(2*M_PI);
+        }];
     }
-    
+
 }
 
 - (void) replaceItem:(int)j withItem:(int)item
@@ -148,7 +160,10 @@
          
          for (NSDictionary *bike in bikes)
          {
+             NSLog(@"bike: %@", bike);
              NSArray *foo = [[bikes valueForKeyPath:[NSString stringWithFormat: @"%@.locale", bike]] componentsSeparatedByString: @"|"];
+             NSLog(@"foo: %@", foo);
+
              int j = 0;
              for (NSArray *i in marker_des)
              {
@@ -166,16 +181,17 @@
          
          int k = 0;
          UIImage *image = nil;
+         NSLog(isRenting? @"i am looking for racks": @"i am looking for bike");
          if (isRenting)
          {
-             image = [self imageWithImage: [UIImage imageNamed:@"walk_marker.png"] scaledToSize:CGSizeMake(83, 93)];
+             image = [self imageWithImage: [UIImage imageNamed:@"cycle_marker.png"] scaledToSize:CGSizeMake(50, 63.6)];
          }else
          {
-             image = [self imageWithImage:[UIImage imageNamed:@"cycle_marker.png"]scaledToSize:CGSizeMake(83, 93)];
+             image = [self imageWithImage:[UIImage imageNamed:@"walk_marker.png"]scaledToSize:CGSizeMake(50, 63.6)];
          }
          
          for (NSArray *i in marker_des){
-             if (([[bike_num objectAtIndex: k] intValue] == 0) && isRenting){
+             if (([[bike_num objectAtIndex: k] intValue] == 0) && !isRenting){
                  k += 1;
                  continue;
              }
@@ -183,7 +199,7 @@
              GMSMarker *marker = [[GMSMarker alloc] init];
              marker.position = CLLocationCoordinate2DMake([i[0] floatValue], [i[1] floatValue]);
              marker.title = i[2];
-             if (isRenting == YES){
+             if (isRenting == NO){
                  marker.snippet = [NSString stringWithFormat: @"Number of bikes: %i", [[bike_num objectAtIndex: k] intValue]];
              }
              marker.map = mapView;
@@ -205,24 +221,25 @@
     return newImage;
 }
 
+// Pressed the locate bike/parking button
 -(IBAction)toggleTransit:(UIButton*)sender {
     sender.selected = !sender.selected;
     [self initMarkers];
 //    NSAttributedString *attributedTitle = [inTransit attributedTitleForState:UIControlStateNormal];
 //    NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
-    
+
     if (sender.selected){
 //        [mas.mutableString setString:@"Parking Bike"];
 //        [mas addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, [@"Parking Bike" length])];
 //        [inTransit setAttributedTitle:mas forState:UIControlStateSelected];
         [inTransit setBackgroundImage:[UIImage imageNamed:@"cycling.png"] forState:UIControlStateSelected];
-        isRenting = NO;
+        isRenting = YES;
     }else{
 //        [mas.mutableString setString:@"Locating Bike"];
 //        [mas addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:(254/255.0f) green:(141/255.0f) blue:(9/255.0f) alpha:0.7] range:NSMakeRange(0, [@"Locating Bike" length])];
 //        [inTransit setAttributedTitle:mas forState:UIControlStateNormal];
         [inTransit setBackgroundImage:[UIImage imageNamed:@"walking.png"] forState:UIControlStateSelected];
-        isRenting = YES;
+        isRenting = NO;
     }
     [mapView clear];
 }
@@ -289,10 +306,9 @@
             settings.hidden = NO;
             feedback.hidden = NO;
             signOut.hidden = NO;
-            NSLog(@"%.2f", settings.bounds.size.height);
-            [settings setTransform:[self rotateAndTranslate:-70 angle:M_PI]];
-            [feedback setTransform:[self rotateAndTranslate:-141.5 angle:M_PI]];
-            [signOut setTransform:[self rotateAndTranslate:-211.5 angle:M_PI]];
+            [settings setTransform:[self rotateAndTranslate:- (settings.bounds.size.height + 15) angle:M_PI]];
+            [feedback setTransform:[self rotateAndTranslate:- (settings.bounds.size.height + 15)*2 angle:M_PI]];
+            [signOut setTransform:[self rotateAndTranslate:- (settings.bounds.size.height + 15)*3 angle:M_PI]];
             
 //            [masMore.mutableString setString:@""];
 //            [more setAttributedTitle:masMore forState:UIControlStateNormal];
@@ -444,23 +460,28 @@
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"bikeRent"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
-            NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
-            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
-            [mas.mutableString setString:@"Scan to Rent"];
-            [qrScanner setAttributedTitle:mas forState:UIControlStateNormal];
-            
+//            NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
+//            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
+//            [mas.mutableString setString:@"Scan to Rent"];
+//            [qrScanner setAttributedTitle:mas forState:UIControlStateNormal];
             [Utilities alert:@"Thank you for riding ZaiBike!" title:@"Bike Returned!" view:self];
+            
+            [UIView animateWithDuration:.5 animations:^{
+                qrScanner.transform = CGAffineTransformMakeRotation(2*M_PI);
+            }];
         }else{
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"bikeRent"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
-            NSMutableAttributedString *mas_ch2return = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
-            
-            [mas_ch2return.mutableString setString:@"Scan to Return"];
-            [qrScanner setAttributedTitle:mas_ch2return forState:UIControlStateNormal];
-            
+//            
+//            NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
+//            NSMutableAttributedString *mas_ch2return = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
+//            
+//            [mas_ch2return.mutableString setString:@"Scan to Return"];
+//            [qrScanner setAttributedTitle:mas_ch2return forState:UIControlStateNormal];
             [Utilities alert:[NSString stringWithFormat:@"Have a pleasant journey!"] title:@"Bike Rented!" view:self];
+            [UIView animateWithDuration:.3 animations:^{
+                qrScanner.transform = CGAffineTransformMakeRotation(M_PI);
+            }];
         }
     }else{
         
@@ -488,13 +509,16 @@
                     [combi_code setText:@""];
                     [combi_code setBackgroundColor: [UIColor clearColor]];
                     
-                    NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
-                    NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
-                    [mas.mutableString setString:@"Scan to Rent"];
-                    [qrScanner setAttributedTitle:mas forState:UIControlStateNormal];
+//                    NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
+//                    NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
+//                    [mas.mutableString setString:@"Scan to Rent"];
+//                    [qrScanner setAttributedTitle:mas forState:UIControlStateNormal];
                     
                     [Utilities alert:@"Thank you for riding with ZaiBike!" title:@"Bike Returned!" view:self];
                     
+                    [UIView animateWithDuration:.3 animations:^{
+                        qrScanner.transform = CGAffineTransformMakeRotation(2*M_PI);
+                    }];
                 }else if([status isEqualToString:@"no user"]){
                     [Utilities alert:@"This bike is currently unoccupied. Do rent first then return!" title:@"Oopsie!" view:self];
                 }else if([status isEqualToString:@"no booking"]){
@@ -537,15 +561,19 @@
                     [combi_code setText:[NSString stringWithFormat: @"  LOCK COMBINATION: %@  ",lock_combi]];
                     [combi_code setBackgroundColor:[UIColor colorWithRed:(254/255.0f) green:(141/255.0f) blue:(9/255.0f) alpha:1.0]];
                     
-                    NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
-                    NSMutableAttributedString *mas_ch2return = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
-                    
-                    [mas_ch2return.mutableString setString:@"Scan to Return"];
-                    [qrScanner setAttributedTitle:mas_ch2return forState:UIControlStateNormal];
+//                    NSAttributedString *attributedTitle = [qrScanner attributedTitleForState:UIControlStateNormal];
+//                    NSMutableAttributedString *mas_ch2return = [[NSMutableAttributedString alloc] initWithAttributedString:attributedTitle];
+//                    
+//                    [mas_ch2return.mutableString setString:@"Scan to Return"];
+//                    [qrScanner setAttributedTitle:mas_ch2return forState:UIControlStateNormal];
                     
                     [Utilities alert:[NSString stringWithFormat:@"Lock Combination: %@\nHave a pleasant journey!",lock_combi] title:@"Bike Rented!" view:self];
+                    
+                    [UIView animateWithDuration:.3 animations:^{
+                        qrScanner.transform = CGAffineTransformMakeRotation(M_PI);
+                    }];
                 }else if([status isEqualToString:@"currently renting bike"]){
-                    [Utilities alert:@"Looks like you are still renting one of the ZaiBikes. Please return first!" title:@"Oopsie!" view: self];
+                    [Utilities alert:@"Looks like you are still renting one of the ZaiBikes. Please return it first by scanning at the QR code located at the rack area!" title:@"Oopsie!" view: self];
                 }else if([status isEqualToString:@"bike not available"]){
                     [Utilities alert:@"This bike is still being rented! Please contact ZaiBike team @97578476 if you really want to ride with this bike" title:@"Oopsie!" view:self];
                 }else{
